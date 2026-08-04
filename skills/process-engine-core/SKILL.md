@@ -24,6 +24,10 @@ guardrails.
 For the platform-agnostic prompt+code successor, see
 [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
 
+Process Engine runs on Turnstone. Turnstone's native mechanisms — projects,
+personas, skills, prompt templates, the judge — are the engine's platform and
+enforcement layer.
+
 ## When to Use
 - Any new workstream opened on the Process Engine project.
 - Ambiguous requests: "turn this idea into X" — route before authoring.

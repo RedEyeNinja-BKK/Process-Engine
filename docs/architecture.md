@@ -8,6 +8,9 @@ the gates mechanically — the model generates packages; Turnstone owns the guar
 For the platform-agnostic prompt+code successor, see
 [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
 
+Turnstone is the engine's platform. The engine is built for Turnstone,
+deployed on Turnstone, and enforced by Turnstone's native governance.
+
 ## Components
 
 ```
@@ -47,10 +50,9 @@ flowchart TB
     H -- operator sign-off --> I[Trial]
     I -- FAIL --> G
     I -- all PASS --> J[Ship]
-    J --> K[Deployed package]
-    J -- verify read-back --> L[Evidence recorded]
-    L --> M[Feedback to Triage]
-    M -- BUG or design --> G
+    J -- verify read-back --> L[Package live on Turnstone]
+    L --> M[Operator feedback to Triage]
+    M --> G
 ```
 
 **Pipeline gates** (v1.9.5): every stage has an operator gate. Turnstone's native
@@ -73,8 +75,9 @@ prompt policy and advisory judge enforce these mechanically.
 - **Trial** — case set from acceptance criteria + scope surface (happy path,
   gray zone, escalation, boundary, trigger set), actual vs expected
   recorded. Depth scales with the package's domain.
-- **Ship** — confirm gates, define rollback, deploy via Turnstone's native
-  API, verify by read-back, record evidence.
+- **Ship** — confirm gates, define rollback, deploy the package via
+  Turnstone's native API (project, persona, skills, templates, governance
+  objects), verify by read-back, record evidence.
 
 ## Release integrity
 

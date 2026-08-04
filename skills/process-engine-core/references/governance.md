@@ -1,12 +1,11 @@
 # references/governance.md — Per-package governance artifacts (helpers, never blockers)
 
-Generated packages carry native Turnstone governance objects **when deployed
-on Turnstone** (the engine's own platform): a prompt policy and advisory
-judge rules derived from the persona's principles and the risk surface. They
-are **helpers**: advisory, operator-visible, and reversible — never silent
-blockers, never restrictive by default. Portable-only packages (deployed to
-non-Turnstone Agent Skills-compatible runtimes) receive the same advisory
-posture as documented guidance, not native objects.
+Generated packages carry native Turnstone governance objects: a prompt
+policy and advisory judge rules derived from the persona's principles and
+the risk surface. They are **helpers**: advisory, operator-visible, and
+reversible — never silent blockers, never restrictive by default. Because the
+engine is Turnstone-native, every package it ships deploys on Turnstone with
+those objects live.
 
 ## Why per-package governance
 

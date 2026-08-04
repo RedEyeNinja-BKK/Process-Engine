@@ -12,9 +12,8 @@ it to build cases.
 
 Agent skills encode "the workflows, quality gates, and best practices senior
 engineers use" as step-by-step processes agents follow. The Agent Skills
-standard defines a portable, cross-client format for those skills. The Process
-Engine generates packages that carry this discipline into any domain — in a
-format that validates anywhere.
+standard defines the format Process Engine generates. The engine carries this
+discipline into any domain, in a format that validates on Turnstone.
 
 ## The Agent Skills open format (spec essentials)
 
@@ -112,7 +111,7 @@ format that validates anywhere.
 - Baseline: run each case with-package and without-package (or vs previous
   version); record token count and duration; a package must earn its context
   cost.
-- Trial case sets in a portable format: (id, prompt, expected_output,
+- Trial case sets in a structured format: (id, prompt, expected_output,
   optional files).
 - Every generated package carries a case set before it ships.
 

@@ -29,7 +29,10 @@ to scope limits, review, trial evidence, and operator approval.
 
 ## Turnstone-native
 
-Process Engine runs on Turnstone. Every generated package includes Turnstone
-governance objects — prompt policy and advisory judge rules — that enforce
-the engine's operating stance. The governance layer is the enforcement
-mechanism, not an add-on. See [Governance usage](governance-usage.md).
+Process Engine is **Turnstone only**. It is built for Turnstone, deployed on
+Turnstone, and enforced by Turnstone's native governance. Nothing in the
+engine — and nothing the engine generates — targets any other harness.
+Every generated package includes Turnstone governance objects — prompt
+policy and advisory judge rules — that enforce the engine's operating stance.
+The governance layer is the enforcement mechanism, not an add-on. See
+[Governance usage](governance-usage.md).

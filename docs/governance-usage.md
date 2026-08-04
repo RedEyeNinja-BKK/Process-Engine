@@ -33,7 +33,7 @@ the guardrails.
 
 ## 2. Governance as capability, not guardrail
 
-Process Engine uses Turnstone's Prompts and Judge surfaces as platform
+Process Engine uses Turnstone's Prompts and Judge surfaces as Turnstone
 capabilities — not as guardrails. Every use is advisory, never blocking:
 
 - **Prompt policy** — anchors the engine's operating stance persistently
@@ -108,5 +108,3 @@ All verdicts are advisory. The operator remains the only gate.
 - **Advisory, never blocking** — judge verdicts inform, never replace operator approval.
 - **Reversible** — every governance artifact can be disabled or deleted.
 - **Content-only** — the prompt policy carries the engine's stance; it never restricts tools.
-- **Portable packages unaffected** — governance runs inside the Turnstone harness;
-  generated packages remain clean.

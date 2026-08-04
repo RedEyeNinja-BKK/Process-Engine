@@ -61,7 +61,7 @@ the gate.
 - "It passed the checklist, ship it." → Checklist is necessary, not
   sufficient; the operator gate is the sufficient part.
 - "The name is fine even if it doesn't match the folder." → Spec requires the
-  match; a portable skill must validate anywhere.
+  match; a Turnstone-native skill must validate on the platform.
 
 ## Red Flags
 - Shipping without a recorded verdict.

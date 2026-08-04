@@ -24,10 +24,9 @@ flowchart TB
     H -- operator sign-off --> I[Trial]
     I -- FAIL --> G
     I -- all PASS --> J[Ship]
-    J --> K[Deployed package]
-    J -- verify read-back --> L[Evidence recorded]
-    L --> M[Feedback to Triage]
-    M -- BUG or design --> G
+    J -- verify read-back --> L[Package live on Turnstone]
+    L --> M[Operator feedback to Triage]
+    M --> G
 ```
 
 Every gate requires operator sign-off. Turnstone's native prompt policy and advisory judge enforce this mechanically — the engine doesn't need to recite governance policy; Turnstone handles it.
@@ -47,14 +46,14 @@ Process Engine is domain-neutral in package structure, artifact-specific, and ru
 
 Process Engine runs on Turnstone because Turnstone's governance surface is what the engine produces. Every generated package includes governance objects — prompt policy and advisory judge rules — that Turnstone enforces mechanically. The engine's "operator is the gate" philosophy maps directly to Turnstone's native approval surfaces.
 
-| Harness | Governance layer |
+| Harness | Governance surface |
 |---|---|
 | **Turnstone** | Full — projects, personas, roles, policies, prompts, judge, audit |
-| Hermes | Agent runtime — no governance objects |
-| OpenClaw | Agent + channels — emission-focused |
+| Hermes | Agent runtime (skills, toolsets, tasks) — no governance objects |
+| OpenClaw | Agent + channels (Discord/LINE) — emission-focused |
 | Claude | Commercial harness — no governance layer |
 
-You don't need Turnstone to use Process Engine, but you need Turnstone for the governance wiring. The engine's prompt policy and advisory judge rules are Turnstone-native artifacts that enforce the gates mechanically — the model generates packages; Turnstone owns the guardrails.
+The engine is built for Turnstone and deployed on Turnstone. Turnstone's native mechanisms — projects, personas, skills, prompt templates, the judge — are the engine's platform and enforcement layer. The model generates packages; Turnstone owns the guardrails.
 
 ## The engine's components
 
@@ -86,7 +85,7 @@ You don't need Turnstone to use Process Engine, but you need Turnstone for the g
 
 **Not a fit:**
 - You want a one-click UI or web interface (this is a skill-based workflow)
-- You don't use Turnstone (see [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory) for the platform-agnostic successor)
+- You don't use Turnstone — see [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory), the platform-agnostic prompt+code successor
 
 ## Using Process Engine
 
