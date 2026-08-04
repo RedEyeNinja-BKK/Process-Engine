@@ -1,0 +1,22 @@
+# Process Engine — canonical release manifest
+# v1.9.5 prompt-only — stripped back to the engine's original intent.
+# Turnstone-native. All logic in prompts; Turnstone governance enforces gates.
+# For the prompt+code successor, see github.com/RedEyeNinja-BKK/Method-Factory.
+
+version = "1.9.5"
+engine = "process-engine 1.9.5"
+compatibility = "Turnstone 1.8.x"
+author = "RedEyeNinja-BKK"
+
+# Content lineage
+lineage = "v8.0"
+
+# Release facts
+skill_count = 6
+reference_count = 7
+template_count = 6
+
+# Historical note: v1.9.1 era evaluator suite (34 cases, release sealing,
+# mirrored dual-source, qualification_status) was retired at the v1.9.5 split.
+# The prompt-only engine relies on Turnstone's native governance for enforcement.
+# Evaluator evidence is preserved at github.com/RedEyeNinja-BKK/Method-Factory.
