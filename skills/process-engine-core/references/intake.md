@@ -87,7 +87,20 @@ clarification — the material sharpens the questions. Run conversationally:
      intent understanding
 4. **Extract** — pull the techniques, constraints, domain specifics, and
    intent from ALL provided material. Multiple sources combine into a
-   best-of-all-worlds understanding.
+   best-of-all-worlds understanding. That synthesis never drops what the
+   package will later need to tell entities apart:
+   - preserve identity-critical relationships (entity ↔ role ↔
+     identifier/alias — machines, accounts, people, products, records,
+     services) when they are material to later decisions or tool targets;
+   - keep explicitly distinct entities/identifiers distinct — do not
+     collapse them into one;
+   - when sources disagree on an identity-critical fact, keep the conflict
+     source-attributed and unresolved rather than synthesizing a single
+     "best" value;
+   - when identity is genuinely ambiguous, preserve the ambiguity instead of
+     silently resolving it.
+   The preserved relationships and conflicts are carried forward in the
+   collected-material summary handed to Pattern.
 5. **Author original** — write the generated package's skill instructions
    fresh from the extraction. Never paste input content verbatim. This is
    the standing practice: extract and incorporate, never copy.

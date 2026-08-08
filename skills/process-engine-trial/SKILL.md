@@ -36,6 +36,12 @@ per-package spec.
    Scale case depth to the package: a simple standup-notes skill needs
    2-3 deterministic cases from the acceptance criteria. A risk-relevant
    package needs the full case suite.
+   - identity case (when identity/target selection is material to behavior):
+     include at least one contradiction / alias / near-match case — e.g., two
+     similar names or IDs, a supplied-vs-live source conflict, or a near-miss
+     alias that looks like the target but is not. Record whether the package
+     preserved the distinction (or required disambiguation) instead of
+     collapsing the entities.
 2. **Define fixtures** — setup stubs: model config, persona, skill, scenario
    input. Emit case sets in a structured format (id, prompt, expected_output).
 3. **Run** each case with clean context; record actual vs expected result.
@@ -63,9 +69,12 @@ per-package spec.
 - Trials that only test the happy path.
 - No trigger set for a package with activation-dependent skills.
 - Ignoring a FAIL case ("edge case, won't happen").
+- No contradiction/alias/near-match case for a package whose behavior
+  depends on distinguishing entities (names, IDs, roles, endpoints, aliases).
 
 ## Verification
 - [ ] Cases defined for all acceptance criteria + scope surface
+- [ ] Identity/alias/near-match case included where identity is material to behavior
 - [ ] Trigger set run (where package has activation-dependent skills)
 - [ ] Every case run, actual vs expected recorded
 - [ ] All PASS (or failures routed back to author/review)

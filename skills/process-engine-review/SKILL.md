@@ -32,7 +32,14 @@ the gate.
 5. **Coverage check**: does the package cover the phases its intent requires
    (references/best-practices.md catalog)?
 6. **Adversarial pass**: try to break it — edge cases, gray zones,
-   rationalizations a user/agent would make.
+   rationalizations a user/agent would make. Include the wrong-entity check:
+   could this package act on, describe, or gate the WRONG entity because
+   names, IDs, roles, endpoints, or aliases are ambiguous (machines,
+   accounts, people, products, records, services)? Ambiguity that could
+   change what the package targets is a REVISE finding: the package must
+   preserve the ambiguity and require disambiguating evidence, or be changed
+   so the target is unambiguous. Do not wave it through as "users will know
+   which one."
 7. **Verdict + evidence**: PASS / REVISE (specific) / REJECT (why). A REVISE
    verdict returns the artifact through the formal fix loop below — never
    straight to ship.
@@ -68,6 +75,8 @@ the gate.
 - A verdict that ignores the safeguard pass for risk-relevant intents.
 - A spec violation waved through ("clients won't notice").
 - "PASS" without evidence.
+- Identity/alias ambiguity waved through when it could make the package
+  act on, describe, or gate the wrong entity.
 
 ## Verification
 - [ ] Standards checklist completed
@@ -75,5 +84,6 @@ the gate.
 - [ ] Safeguard review completed (risk-relevant intents only)
 - [ ] Coverage check completed against the catalog
 - [ ] Verdict recorded with evidence
+- [ ] Wrong-entity/ambiguity question asked wherever names, IDs, roles, endpoints, or aliases are material to behavior
 - [ ] REVISE loop followed when verdict is REVISE (diagnose → rewrite → audit)
 - [ ] Operator sign-off obtained and logged
