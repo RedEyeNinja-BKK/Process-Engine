@@ -2,7 +2,7 @@
 
 **Turn your working knowledge, examples, and operating requirements into a Turnstone-native agent package — persona, project, skills, templates — through a gated pipeline with your sign-off at every step.**
 
-Process Engine is a persona-and-skills generator for Turnstone: tell it what you want, share what you have, and it produces a complete Turnstone package through a gated pipeline. The engine runs on prompts. Turnstone's native governance mechanisms (prompt policy, advisory judge) enforce the gates mechanically.
+Process Engine is a persona-and-skills generator for Turnstone: tell it what you want, share what you have, and it produces a complete Turnstone package through a gated pipeline. The engine runs on prompts. Turnstone provides the native governance surfaces Process Engine uses for persistent context and advisory evidence; operator approval remains the final authority at the defined gates.
 
 > Process Engine v1.9.6 is the **prompts-only, Turnstone-native** reference implementation. The prompt+code successor is [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
 
@@ -29,7 +29,7 @@ flowchart TB
     M --> G
 ```
 
-Every gate requires operator sign-off. Turnstone's native prompt policy and advisory judge enforce this mechanically — the engine doesn't need to recite governance policy; Turnstone handles it.
+The meaningful operator gates are the Summary Gate (confirm material/intent/objective before generation), Review (operator accepts the reviewed package), Trial (operator accepts trial evidence/readiness), and Ship (operator authorizes deployment). Turnstone's prompt policy provides durable contextual guidance and the advisory judge provides review/trial evidence; neither silently replaces operator approval — the engine doesn't need to recite governance policy; Turnstone supplies the native mechanisms around it.
 
 > See a real run end to end: [case study: a shop package built, trialed, and shipped](case-study/case-study-first-run.md).
 
@@ -37,14 +37,14 @@ Every gate requires operator sign-off. Turnstone's native prompt policy and advi
 
 - **Intent before output** — collects what you already have, clarifies what you mean, asks what "good" looks like *before* it writes anything.
 - **Input-agnostic intake** — links, pasted text, files, store pages, existing skills, documents. Everything is assessed; incorporated or excluded with a recorded reason.
-- **Gates, not guesswork** — nothing ships without your review; nothing ships untried. Turnstone's native governance enforces these mechanically.
+- **Gates, not guesswork** — nothing ships without your review; nothing ships untried. You are the gate; the engine's workflow carries the discipline and Turnstone supplies the native surfaces around it.
 - **Adapts, never copies** — techniques are extracted and attributed, original instructions authored. Sources traced from intent through deployment.
 
 Process Engine is domain-neutral in package structure, artifact-specific, and runtime-aware. It's been exercised on Etsy store management, supplement product listings, incident response, employee onboarding, database backup operations, and financial planning advisories — not just software engineering.
 
 ## Why Turnstone
 
-Process Engine runs on Turnstone because Turnstone's governance surface is what the engine produces. Every generated package includes governance objects — prompt policy and advisory judge rules — that Turnstone enforces mechanically. The engine's "operator is the gate" philosophy maps directly to Turnstone's native approval surfaces.
+Process Engine runs on Turnstone because Turnstone's governance surface is what the engine produces. Every generated package includes governance objects — prompt policy and advisory judge rules — that provide persistent context and advisory evidence; the engine's "operator is the gate" philosophy maps directly to Turnstone's native approval surfaces.
 
 | Harness | Governance surface |
 |---|---|
@@ -53,7 +53,7 @@ Process Engine runs on Turnstone because Turnstone's governance surface is what 
 | OpenClaw | Agent + channels (Discord/LINE) — emission-focused |
 | Claude | Commercial harness — no governance layer |
 
-The engine is built for Turnstone and deployed on Turnstone. Turnstone's native mechanisms — projects, personas, skills, prompt templates, the judge — are the engine's platform and enforcement layer. The model generates packages; Turnstone owns the guardrails.
+The engine is built for Turnstone and deployed on Turnstone. Turnstone's native mechanisms — projects, personas, skills, prompt templates, the judge — are the engine's platform and governance surfaces; the model generates packages and the operator is the final gate.
 
 ## The engine's components
 
@@ -105,7 +105,7 @@ The engine never copies what you give it — it extracts the techniques and inte
 Process Engine runs on Turnstone. Full governance included:
 
 1. Create the project: `POST /v1/api/projects`.
-2. Create the persona: `POST /v1/api/admin/personas` (base_prompt = `persona.md`).
+2. Create the persona: `POST /v1/api/admin/personas` (base_prompt = `persona.md`). `persona.md` defines the canonical **Process Engine generator persona**; deploy it under a distinct generator identity (e.g. `process-engine-generator`) so it does not collide with any development/maintenance persona used on the same Turnstone instance.
 3. Create the six skills and six templates via the skills API (prompt_templates store); attach the seven references as skill resources on `process-engine-core`.
 4. Create the engine's governance wiring: the prompt policy and advisory judge rules.
 5. Verify by reading every created object back (GET), then run trials as the verification gate.

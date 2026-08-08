@@ -2,20 +2,22 @@
 
 Process Engine is a Turnstone-native agent-skill framework: a persona, six skills,
 seven references, and six session templates that drive a gated authoring pipeline.
-Turnstone's native governance mechanisms (prompt policy, advisory judge) enforce
-the gates mechanically — the model generates packages; Turnstone owns the guardrails.
+Turnstone provides the native governance surfaces the engine uses for persistent
+context and advisory evidence; operator approval remains the final authority at
+the defined gates. The model generates packages; Turnstone supplies the native
+mechanisms around the workflow.
 
 For the platform-agnostic prompt+code successor, see
 [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
 
 Turnstone is the engine's platform. The engine is built for Turnstone,
-deployed on Turnstone, and enforced by Turnstone's native governance.
+deployed on Turnstone, and uses Turnstone's native governance surfaces.
 
 ## Components
 
 ```
 Process Engine (project)
-├── persona: process-engine        # identity, standards, working style
+├── persona: process-engine-generator   # canonical generator persona (repo persona.md; deploy under a distinct generator identity so it does not collide with any development/maintenance persona)
 ├── skills/ (6)
 │   ├── process-engine-core        # entry + routing
 │   ├── process-engine-pattern-author
@@ -55,8 +57,7 @@ flowchart TB
     M --> G
 ```
 
-**Pipeline gates** (v1.9.6): every stage has an operator gate. Turnstone's native
-prompt policy and advisory judge enforce these mechanically.
+**Pipeline gates** (v1.9.6): the meaningful operator gates are the Summary Gate (confirm material/intent/objective before generation), Review (operator accepts the reviewed package), Trial (operator accepts trial evidence/readiness), and Ship (operator authorizes deployment). Not every conversational stage is an approval gate — the pipeline stays conversational between the defined gates. Turnstone's native prompt policy provides durable contextual guidance and the advisory judge provides review/trial evidence; neither silently replaces operator approval.
 
 - **Orient** — declare scope and ask what to build.
 - **Collect** — the engine invites material (links, text, files, docs) and
