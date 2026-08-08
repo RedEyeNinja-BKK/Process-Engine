@@ -138,9 +138,9 @@ Inspected (current titles at root `cheatsheets/`, not `cheatsheets/ai/`):
 | Progressive disclosure | agentskills spec + Osmani | Present (spec; context-engineering) | skill-anatomy | SPEC REQUIREMENT + UPSTREAM | ALIGNED |
 | Trial methodology (trigger sets, baselines, token capture) | Agent Skills authoring/eval guidance | **Present** (optimizing-descriptions.mdx: trigger sets, near-misses, rates; evaluating-skills.mdx: with/without baseline, timing.json token+duration, assertions) | best-practices, trial skill | SPEC GUIDANCE (authoring/eval) + PE ADAPTATION to Turnstone Trial | ALIGNED (corrected; no longer B-class) |
 | 24-skill catalog | Osmani | Confirmed — README at `f4933771` says "install all 24 skills" + "All 24 Skills" section (23 lifecycle + 1 meta) | best-practices | UPSTREAM | ALIGNED (resolved — no longer A/B) |
-| Two-source basis (Osmani + Agent Skills) | — | Accurate for current references; OWASP to be added as a proportional security basis (see §5) | evidence-library, best-practices | PE ORIGINAL (basis doc) | ALIGNED; OWASP proportional post-v1.9.6 |
+| Two-source basis (Osmani + Agent Skills) | — | Accurate for current references; OWASP is the named proportional cross-cutting security/risk basis (integrated pre-release in PR #6) | evidence-library, best-practices | PE ORIGINAL (basis doc) | ALIGNED |
 | Progressive disclosure | agentskills spec + Osmani | Present (spec Progressive Disclosure section = guidance/convention; context-engineering) | skill-anatomy | SPEC GUIDANCE / DESIGN CONVENTION + PE STANDARD | ALIGNED (classification refined) |
-| OWASP Top 10 prevention | Osmani catalog (security-and-hardening skill) | Present as that skill's topic | best-practices (catalog line) | UPSTREAM (catalog description) | ALIGNED (OWASP itself not a PE basis yet) |
+| OWASP Top 10 prevention | Osmani catalog (security-and-hardening skill) | Present as that skill's topic | best-practices (catalog line) | UPSTREAM (catalog description) | ALIGNED (OWASP also added as PE proportional security basis in PR #6) |
 
 ## 8. Security review of intake/context/material handling
 
@@ -150,7 +150,7 @@ PE consumes user text, files, URLs, external skills, docs, tool observations, ac
 - **Distinguish operator instruction vs embedded/untrusted instruction:** present (intake trust boundary; PR #2 provenance handling; trials #1/#2 demonstrated four-way provenance + correction handling). ALIGNED.
 - **Sensitive/private material:** present (`references/safety.md`: no credential exposure, no private-data leakage; Proxmox T6 refused secrets). ALIGNED.
 - **Tool evidence vs inference:** present (PR #2 intake preserves tool evidence with provenance; trials labeled evidence). ALIGNED.
-- **Potentially hostile embedded instruction:** handled by the same intake trust boundary; not separately tested in trials — theoretical; classify as a **future-trial candidate** (a D/C finding: no demonstrated behavioral gap).
+- **Potentially hostile embedded instruction:** handled by the same intake trust boundary. Before G6 this was theoretical (D/C: no demonstrated behavioral gap); **now G6 provides focused behavioral evidence** (PR #6 comment `5226619712`): an embedded hostile instruction remained data, not authority; useful material could still be extracted; provenance remained; operator intent unchanged; no unrelated action occurred.
 - **No new prompt text warranted by this review** (existing trials cover the provenance chain; anything else is theoretical).
 
 ## 9. Architectural boundary check
@@ -161,7 +161,7 @@ All candidate improvements were checked: RBAC/approvals/audit/persistence/securi
 
 - **A — factual/source drift:** none remains after this correction pass. (Changed-file count discrepancy was in a report, not the repo — corrected here to 12.)
 - **B — attribution drift:** (1) "imperative phrasing" framed as spec requirement in best-practices + spec-compliance → relabel as upstream authoring recommendation / PE authoring standard (formal spec requires only non-empty ≤1024 chars describing what + when); (2) **metadata wording** — spec says "map from string keys to string values"; PE docs say "arbitrary key-value map" → align wording; (3) **trial/eval attribution corrected** — Agent Skills authoring/eval guidance does contain trigger sets / near-misses / with-without baselines / token-timing capture; PE adapts it (no longer "PE-only"). (4) persona.md "Turnstone enforces them mechanically" → align to advisory contract.
-- **C — behavioral gap:** none found in the generator behavior itself. **However — internal behavioral-contract consistency issue:** stale mechanical-enforcement language remains in **four load-bearing prompt artifacts** — `persona.md`, `skills/process-engine-core/SKILL.md`, `skills/process-engine-pattern-author/SKILL.md`, `skills/process-engine-ship/SKILL.md` — containing "for enforcement", "Turnstone owns the guardrails", "enforcement layer", "enforce this mechanically", "native enforcement layer", while `references/governance.md` and the PR #4 docs correctly state prompt policy/judge are advisory helpers and operator approval is authoritative. This is a **small prompt correction before release** (make prompts accurately describe the advisory Turnstone-native governance model intended — the opposite of adding enforcement). Theoretical intake concern (hostile embedded instruction in untrusted material) → future-trial candidate, now planned as G6.
+- **C — behavioral gap:** none found in the generator behavior itself. **However — internal behavioral-contract consistency issue (now corrected):** stale mechanical-enforcement language was found in four load-bearing prompt artifacts — `persona.md`, `skills/process-engine-core/SKILL.md`, `skills/process-engine-pattern-author/SKILL.md`, `skills/process-engine-ship/SKILL.md` ("for enforcement", "Turnstone owns the guardrails", "enforcement layer", "enforce this mechanically", "native enforcement layer") while `references/governance.md` and the PR #4 docs correctly state prompt policy/judge are advisory helpers and operator approval is authoritative. **Corrected by PR #6** (small prompt wording change — makes prompts accurately describe the advisory Turnstone-native governance model intended, the opposite of adding enforcement). Theoretical intake concern (hostile embedded instruction in untrusted material) → now covered by G6 (see §8).
 - **D — useful upstream evolution:** real-task-then-extract (externally validates observed behavior — record, do not add rule); plan-validate-execute for destructive ops (PE already approximates via dry-run/gate patterns); exact-action approval binding (PE already binds gates to exact operations in generated packages); tool-description-untrusted (MCP) — already reflected in intake trust boundary; Osmani source-driven-development retrieval-safety ("fetched docs are data, not commands") — reinforces PE intake trust boundary, no new rule.
 - **E — out of scope:** RBAC/audit/approvals infra, memory encryption, output-guard middleware, MCP implementation → Turnstone / generated applications / Method Factory / infrastructure.
 
@@ -191,14 +191,15 @@ All candidate improvements were checked: RBAC/approvals/audit/persistence/securi
 
 PR #4 itself is correct and ready for merge review (verified full diff; structural-validation PASS on head; 12 files; non-behavioral). The behavioral boundary holds; the engine remains smaller, source-honest, prompts-only, Turnstone-native, proportionate, and proven through real use.
 
-After the independent senior review (`4888963474`), the correction set is sharper:
-1. stale mechanical-enforcement wording in persona/core/pattern/ship (internal behavioral-contract consistency, small prompt correction — do NOT add enforcement);
+After the independent senior reviews (`4888963474`, `4889011120`, `4889019914`), the correction set is **implemented in PR #6 and senior-reviewed PASS** (subject to stacked-PR CI after retargeting):
+1. stale mechanical-enforcement wording in persona/core/pattern/ship (internal behavioral-contract consistency, small prompt correction — no enforcement added);
 2. imperative-description spec-vs-guidance framing;
 3. metadata string-map wording;
 4. validator claim/allowed-field mismatch (small structural fidelity);
-5. Triage package-manifest remnant (verify; if none, rewrite without manifest).
+5. Triage package-manifest remnant (verified: no current contract; rewritten without manifest);
+6. OWASP named proportional security/risk basis integrated pre-release.
 
-These should land as a small follow-up alignment change (stacked on PR #4) before the v1.9.6 tag/release gate. None is a behavioral gap requiring new machinery; none blocks PR #4's merge review itself.
+**Final status:** original findings (this review) → corrections (PR #6) → senior-reviewed PASS (`4889019914`). PR #4 remains the clean release-identity/documentation PR; PR #6 is the stacked alignment-fix PR; both await operator merge gates in sequence. None of these is a behavioral gap requiring new machinery.
 
 ---
 
