@@ -22,6 +22,22 @@ per-package spec.
 - Regression: re-run cases after any change.
 
 ## Core Process
+0. **Determine applicable categories before running.** Identify which trial
+   categories apply to this package and record the set: acceptance-criteria /
+   happy-path cases; gray-zone / boundary / escalation cases; identity case
+   when target identity is material; trigger/activation set when the package
+   is activation-dependent; safeguard-specific drills when risk-relevant.
+   A concise trial-evidence summary is sufficient — no persisted state
+   manifest.
+
+0a. **Capability preflight.** Before behavioral cases that depend on runtime
+   capabilities, verify the required capability path is actually available in
+   the target Trial runtime. If package declarations are internally wrong,
+   that should have been caught at Review (REVISE). If the package declaration
+   is correct but the runtime capability is unavailable/stale, classify the
+   overall Trial as INCOMPLETE — do not score the behavioral case FAIL — and
+   report the responsible runtime/tool layer if known.
+
 1. **Define cases** from the artifact's acceptance criteria and scope surface:
    - happy path (e.g. normal use of the package)
    - gray zone (e.g. input near the scope boundary — must be handled per
@@ -45,11 +61,24 @@ per-package spec.
 2. **Define fixtures** — setup stubs: model config, persona, skill, scenario
    input. Emit case sets in a structured format (id, prompt, expected_output).
 3. **Run** each case with clean context; record actual vs expected result.
-4. **Score**: PASS / FAIL per case; document failures precisely. Activation
+4. **Score** per case: PASS / FAIL; document failures precisely. Activation
    results must separately report should-trigger recall and shouldn't-trigger
    precision; do not collapse an unrun set into a score.
-5. **Hand back**: trial evidence → pattern-author (revisions) or review
-   (re-verify) or ship (all pass).
+5. **Overall Trial verdict** — exactly one of:
+   - **PASS**: every applicable required category has direct evidence and all
+     required executed cases pass.
+   - **INCOMPLETE**: one or more required categories are unrun, blocked,
+     unavailable, missing direct evidence, preflight-unavailable, or
+     otherwise unproven. INCOMPLETE does not advance to Ship.
+   - **FAIL**: a required executed case demonstrates behavior that violates
+     the package's acceptance criteria/scope. FAIL returns through
+     revision/review.
+   Preserve granular case-level PASS/FAIL — the point is to distinguish
+   "10/10 executed behavioral cases PASS" from "overall Trial PASS" when
+   another required category remains unrun.
+6. **Hand back**: only overall PASS may hand off to Ship. INCOMPLETE remains
+   in Trial until evidence is complete. FAIL routes to pattern-author
+   (revisions) or review (re-verify).
 
 ## Examples
 - Case: out-of-scope request → input outside the package's declared domain →
@@ -74,8 +103,11 @@ per-package spec.
 
 ## Verification
 - [ ] Cases defined for all acceptance criteria + scope surface
+- [ ] Applicable trial categories determined before running (behavioral, boundary/adversarial, identity where material, trigger/activation where activation-dependent, safeguard where risk-relevant)
+- [ ] Capability preflight performed for runtime-dependent cases (unavailable → overall INCOMPLETE, not behavioral FAIL)
 - [ ] Identity/alias/near-match case included where identity is material to behavior
 - [ ] Trigger set run (where package has activation-dependent skills)
 - [ ] Every case run, actual vs expected recorded
-- [ ] All PASS (or failures routed back to author/review)
+- [ ] Overall Trial verdict recorded: PASS (all applicable categories evidenced) / INCOMPLETE (category unrun/unproven) / FAIL (required case violates acceptance criteria)
+- [ ] Only overall PASS handed to Ship
 - [ ] Trial evidence recorded in the project

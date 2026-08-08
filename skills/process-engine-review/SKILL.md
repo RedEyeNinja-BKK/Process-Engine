@@ -23,7 +23,22 @@ the gate.
    Skills open standard — name lowercase-hyphen ≤64 matching the directory,
    description ≤1024 with triggering language, allowed frontmatter fields only,
    SKILL.md present. Use the native parse endpoint (POST /v1/api/admin/skills/
-   parse) via Turnstone's native skills API.
+   parse) via Turnstone's native skills API. **Record the parse/spec result in
+   Review evidence** — skill identity, that the native parse/spec check ran,
+   its result, and that no unexpected/non-spec frontmatter fields are present.
+   Review cannot PASS a generated SKILL.md without that recorded receipt. If
+   unexpected frontmatter is present, REVISE. The positive rule is the Agent
+   Skills allowed-field contract; Turnstone-specific deployment metadata maps
+   to the relevant native Turnstone object/API fields, not invented SKILL.md
+   frontmatter fields.
+
+   **Capability-path consistency**: do procedures that require tools or
+   runtime capabilities have an executable path consistent with the generated
+   package's persona/tool declarations (procedure → required capability →
+   declared/expected runtime tool path)? If a referenced operation has no
+   executable declaration in the package, REVISE. Review checks internal
+   package coherence here; it does not prove runtime availability — that is
+   Trial's job.
 3. **Safeguard review** (risk-relevant intents only): per-package safeguards
    present, evidence-named, sized to the domain — no preset doctrine
    (references/safety.md).
@@ -81,6 +96,8 @@ the gate.
 ## Verification
 - [ ] Standards checklist completed
 - [ ] Spec compliance checked (frontmatter, name/description rules)
+- [ ] Native parse/spec result recorded in Review evidence; no unexpected/non-spec frontmatter fields present (REVISE if present)
+- [ ] Capability-path consistency checked for procedures requiring tools/capabilities (REVISE if no executable declaration)
 - [ ] Safeguard review completed (risk-relevant intents only)
 - [ ] Coverage check completed against the catalog
 - [ ] Verdict recorded with evidence
