@@ -13,7 +13,7 @@
   - head: `bcab2205f0bf12221d84caeb0b09938bb7a9ae72` (history-sync merge of `main` into the reviewed tree; tree byte-for-byte identical to reviewed head `6705e5fc84d1ec520f6df14ff6a27e863bdd201d`)
   - merge commit: `4808268ac8f959b2a748410cff0739ac8f0cac88`
   - exact-head `structural-validation` on `bcab220…` run `31268609588` → **success**
-- **Final canonical `main`:** `4808268ac8f959b2a748410cff0739ac8f0cac88` (Merge PR #6: v1.9.6 alignment corrections)
+- **Reviewed product-candidate `main` before this evidence-only PR:** `4808268ac8f959b2a748410cff0739ac8f0cac88` (Merge PR #6: v1.9.6 alignment corrections). Merging PR #5 adds evidence only and will advance `main` without changing product content.
 - **Changed-file count (PR #4): 12** (not 14). The earlier "14" over-counted by adding the two docs-alignment files without deduplicating against the metadata commit. Corrected count: `CHANGELOG.md`, `README.md`, `docs/architecture.md`, `docs/governance-usage.md`, `docs/standards.md`, `process-engine.toml`, six `skills/*/SKILL.md` = 12.
 - **PR #6 changed-file count vs `main`:** 19 (+170/−60).
 
@@ -172,7 +172,7 @@ All candidate improvements were checked: RBAC/approvals/audit/persistence/securi
 
 ### Additional findings (independent senior review, review `4888963474`)
 
-1. **Triage manifest remnant (possible):** `skills/process-engine-triage/SKILL.md` step 4 instructs feedback to link to `package_id`, `version`, `deployment_id`, and trial run "from the package manifest". The current prompts-only product does not otherwise define a package-manifest contract (v1.9.5 retired old manifest mechanics). **Verify whether a current Turnstone-native artifact is intended; if not, rewrite in terms of package/project deployment/trial evidence without reintroducing a manifest.** Pre-clean-slate/Method-Factory-era remnant candidate.
+1. **Triage manifest remnant (historical finding; resolved by PR #6):** `skills/process-engine-triage/SKILL.md` step 4 historically instructed feedback to link to `package_id`, `version`, `deployment_id`, and trial run "from the package manifest" — an artifact of the pre-clean-slate/Method-Factory-era (historical v1.9.5 state, where old manifest mechanics existed). The current prompts-only product does not otherwise define a package-manifest contract. **Resolved by PR #6:** the instruction was rewritten in terms of package/project deployment/trial evidence without reintroducing a manifest.
 2. **Validator/spec-integrity (small structural fidelity):** `tools/validate.py` claims Agent Skills spec validation but allows top-level `version` in its allowed frontmatter set; current Agent Skills `skills-ref` allowed fields are `name`, `description`, `license`, `allowed-tools`, `metadata`, `compatibility`. PE itself correctly places version inside `metadata`, so no current skill is invalid. Validator also does not fully enforce `compatibility` ≤500 or metadata string→string. Small fidelity issue, not a reason to build more machinery. Either make these small checks match upstream or narrow the validator's claim to "PE repository invariants / selected Agent Skills constraints" (review uses Turnstone parse + skills-ref for full spec validation).
 3. **Osmani 24-skill count — RESOLVED:** current README at `f4933771` explicitly says "install all 24 skills" and has an "All 24 Skills" section (23 lifecycle + 1 meta). No remaining A/B uncertainty.
 - **D — useful upstream evolution:** real-task-then-extract (externally validates observed behavior — record, do not add rule); plan-validate-execute for destructive ops (PE already approximates via dry-run/gate patterns); exact-action approval binding (PE already binds gates to exact operations in generated packages); tool-description-untrusted (MCP) — already reflected in intake trust boundary.
@@ -194,7 +194,7 @@ All candidate improvements were checked: RBAC/approvals/audit/persistence/securi
 
 **ALIGNED WITH SMALL DOCUMENTATION/ATTRIBUTION CORRECTIONS (revised: also internal governance-contract wording correction).**
 
-PR #4 and PR #6 are **both merged into canonical `main`** (`4808268ac8f959b2a748410cff0739ac8f0cac88`). The behavioral boundary holds; the engine remains smaller, source-honest, prompts-only, Turnstone-native, proportionate, and proven through real use.
+PR #4 and PR #6 are **both merged** into the reviewed product-candidate `main` (`4808268ac8f959b2a748410cff0739ac8f0cac88`). The behavioral boundary holds; the engine remains smaller, source-honest, prompts-only, Turnstone-native, proportionate, and proven through real use.
 
 After the independent senior reviews (`4888963474`, `4889011120`, `4889019914`, `4889264021`, `4889278302`), the correction set is **implemented in PR #6 and senior-reviewed PASS** (exact-head `structural-validation` run `31268609588` success on `bcab220…`):
 1. stale mechanical-enforcement wording in persona/core/pattern/ship (internal behavioral-contract consistency, small prompt correction — no enforcement added);
@@ -206,7 +206,7 @@ After the independent senior reviews (`4888963474`, `4889011120`, `4889019914`, 
 
 **G1–G6 focused behavioral evidence** at PR #6 comment `5226619712` (Ship gate, advisory governance, governance generation, Triage traceability, spec-vs-guidance, hostile embedded instruction). **Final alignment verdict: ALIGNED — merged product matches the reviewed v1.9.6 candidate.**
 
-**Final status:** original findings (this review) → corrections (PR #6) → senior-reviewed PASS (`4889019914`). PR #4 remains the clean release-identity/documentation PR; PR #6 is the stacked alignment-fix PR; both await operator merge gates in sequence. None of these is a behavioral gap requiring new machinery.
+**Final status:** original alignment findings recorded → corrections implemented by PR #6 → senior review PASS (`4889019914`, `4889278302`) → **PR #4 and PR #6 are merged** into the reviewed product-candidate `main` before this evidence-only PR (`4808268ac8f959b2a748410cff0739ac8f0cac88`). **PR #5 is the remaining evidence-only PR** (one added alignment-review file) awaiting its operator merge gate. None of the corrections was a behavioral gap requiring new machinery; merging PR #5 adds evidence only and does not alter product behavior.
 
 ---
 
