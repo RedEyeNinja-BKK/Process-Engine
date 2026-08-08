@@ -76,11 +76,13 @@ handed to review.
    - Record the entity ↔ role ↔ identifier mapping explicitly; never flatten
      distinct identifiers into one, and never infer equivalence the operator
      did not assert.
-   - Mutable environment/topology facts (addresses, endpoints, interfaces
-     that can change) belong in a package reference/resource by default;
-     genuinely stable, behavior-defining identity (who the agent is, which
-     fixed entities it protects) may live in the persona. Do not bloat the
-     persona with mutable topology.
+   - Mutable operational/contextual identity facts (addresses, endpoints,
+     interfaces, contact identifiers, account associations, record IDs —
+     anything that can change or varies by context) belong in a package
+     reference/resource by default; genuinely stable, behavior-defining
+     identity (who the agent is, which fixed entities it protects) may live
+     in the persona. Do not bloat the persona with mutable operational
+     facts.
    - When supplied or live sources disagree on an identity-critical fact,
      preserve the disagreement, name the sources, and require disambiguating
      evidence — never silently select one.
