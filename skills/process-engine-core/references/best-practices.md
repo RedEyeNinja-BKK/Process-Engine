@@ -4,7 +4,11 @@ The engine's generation basis: the development-engineering best practices every
 generated package conforms to. Two named sources: (1) addyosmani/agent-skills
 (MIT), the 24-skill engineering discipline catalog; (2) agentskills/agentskills
 (code Apache-2.0, docs CC-BY-4.0), the Agent Skills open format standard and
-its authoring/eval guidance. Reviewed 2026-07-31. pattern-author uses this to
+its authoring/eval guidance. OWASP Cheat Sheet Series is a named proportional
+security/risk basis (see references/evidence-library.md + safety.md), used
+when a package's intent/material/tools/domain make security relevant — not a
+universal third generation source applied to every package. Reviewed
+2026-08-08. pattern-author uses this to
 design packages, review uses it to check coverage and compliance, trial uses
 it to build cases.
 
@@ -22,18 +26,23 @@ discipline into any domain, in a format that validates on Turnstone.
   `assets/` (templates, data).
 - Frontmatter: `name` (required, lowercase letters/digits/hyphens, ≤64 chars,
   must match the directory name) and `description` (required, ≤1024 chars,
-  what + when, imperative phrasing). Optional: `license`, `compatibility`
-  (≤500 chars), `metadata`, `allowed-tools` (experimental).
+  describes what + when). Optional: `license`, `compatibility`
+  (≤500 chars), `metadata` (map from string keys to string values),
+  `allowed-tools` (experimental).
 - Body: no format restrictions; recommended <500 lines / <5,000 tokens. Split
   longer content into referenced files.
 - Loading is progressive disclosure: Discovery (name + description only) →
   Activation (full SKILL.md) → Execution (scripts/references on demand).
-- The description carries the entire activation burden — write it imperative,
-  focused on user intent, explicit about scope ("even if the user doesn't
-  mention X"), concise.
+- The description carries the entire activation burden — write it imperative
+  (authoring guidance), focused on user intent, explicit about scope ("even
+  if the user doesn't mention X"), concise.
 - Trial methodology: trigger query sets (should/shouldn't + near-miss
   negatives), with-skill vs without-skill baseline runs, token/timing cost
   capture, trial case sets (id, prompt, expected_output, optional files).
+  This aligns with Agent Skills authoring/evaluation guidance
+  (optimizing-descriptions.mdx, evaluating-skills.mdx) and is adapted into
+  Process Engine's Turnstone-native Trial stage and operator-gated package
+  process.
 
 ## The catalog — 24 skills (Osmani)
 
@@ -94,8 +103,9 @@ discipline into any domain, in a format that validates on Turnstone.
 - **Progressive disclosure** — SKILL.md is the entry point; references load on
   demand (token economy).
 - **Context-aware loading** — load the relevant skill, not all skills.
-- **Trigger-optimized descriptions** — imperative, user-intent-focused, explicit
-  scope, concise; the description is the activation mechanism.
+- **Trigger-optimized descriptions** — imperative (authoring guidance),
+  user-intent-focused, explicit scope, concise; the description is the
+  activation mechanism.
 
 ## Engineering-culture principles (translated into generation rules)
 

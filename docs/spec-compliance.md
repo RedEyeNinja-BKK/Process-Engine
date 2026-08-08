@@ -11,9 +11,9 @@ Every skill this engine generates complies with the
 | Field | Rule enforced |
 |---|---|
 | `name` | lowercase letters/digits/hyphens only; ≤64 chars; must match the parent directory name |
-| `description` | ≤1024 chars; says what the skill does and when to use it; imperative phrasing |
+| `description` | ≤1024 chars; says what the skill does and when to use it. (Imperative phrasing is PE authoring guidance, not a formal spec-validity rule) |
 | `compatibility` | optional; ≤500 chars; environment requirements |
-| `metadata` | optional; arbitrary key-value map |
+| `metadata` | optional; map from string keys to string values |
 | `license` | optional; license name or bundled license file |
 | `allowed-tools` | optional; experimental |
 

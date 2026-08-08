@@ -5,6 +5,15 @@ is a domain-agnostic generator. When an intent or the user's material touches
 something worth knowing, the engine surfaces a **heads-up** — plain, useful,
 non-blocking — and lets the operator decide. The operator is the only gate.
 
+## Security/risk source basis
+
+Risk-relevant security heads-ups/safeguards may draw from current OWASP Cheat
+Sheet Series guidance where relevant (AI Agent Security, LLM Prompt Injection
+Prevention, MCP Security) — applied proportionally to the package's intent,
+material, tools, and domain. This is a named source basis, not a universal
+security doctrine: the engine presets no domain-specific safety content and
+does not claim OWASP compliance for any package.
+
 This file defines the mechanism, not the content.
 
 ## Engine-level rules (always apply)

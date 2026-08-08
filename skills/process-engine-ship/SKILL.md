@@ -18,8 +18,10 @@ defined before ship.
 
 ## Core Process
 1. **Confirm gates** — review PASS + trial PASS + operator approval. All three
-   required before touching anything. Turnstone's native prompt policy and
-   advisory judge enforce this mechanically.
+   required before touching anything. Turnstone's prompt policy/judge may
+   provide contextual/advisory evidence, but they do not substitute for these
+   recorded prerequisites or operator authority — you must confirm them
+   yourself before deploying.
 2. **Define rollback** — how to undo this deployment (delete the created
    objects / revert content) before deploying.
 3. **Deploy the package** via Turnstone's native API:

@@ -14,6 +14,11 @@ All notable changes to Process Engine are recorded here.
 - **Trial:** identity-sensitive packages include contradiction/alias/near-match cases.
 - **Repository hygiene:** removed obsolete drafts→converter generated-source architecture; GitHub committed content is canonical.
 - **Structural validation:** retained small repository structural validation and made GitHub CI genuinely fail closed; structural PASS is explicitly separated from behavioral/release approval.
+- **Governance-contract alignment:** removed stale claims that Turnstone prompt policy/advisory judge mechanically enforce Process Engine gates; Process Engine prompts carry workflow discipline and operator approval remains authoritative.
+- **Agent Skills source fidelity:** separated formal format requirements from authoring/evaluation guidance; corrected metadata string-map wording and retained legitimate Agent Skills eval attribution.
+- **Triage traceability:** removed the obsolete package-manifest dependency in favor of existing package/project, deployed-object and trial evidence.
+- **Structural validator fidelity:** selected frontmatter checks now better match current Agent Skills constraints without turning the validator into a full spec/runtime evaluator.
+- **OWASP security basis:** added OWASP Cheat Sheet Series as a named **proportional cross-cutting security/risk basis**, not universal security boilerplate or an OWASP-compliance claim.
 
 ### Validated
 
@@ -23,6 +28,7 @@ All notable changes to Process Engine are recorded here.
   - customer/order-record context.
 - Across the tested cases, Process Engine successfully reused relevant accumulated workstream context without repeated questions, preserved provenance/corrections/ambiguity, excluded irrelevant chatter, and maintained Summary Gate discipline.
 - These trials support the observed behavior in the tested scenarios; they do **not** claim a universal transcript-ingestion guarantee.
+- Focused regressions covering operator Ship approval, advisory governance semantics, generated governance helpers, Triage traceability, spec-vs-guidance description handling, and hostile embedded instructions all passed against the corrected v1.9.6 prompt text. These ran on the current Turnstone generator/runtime with the corrected prompt text embedded for the test; the live store was untouched and this is not live-v1.9.6 deployment proof.
 
 ### Evidence qualification
 

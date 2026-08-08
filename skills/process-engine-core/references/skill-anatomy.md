@@ -4,7 +4,8 @@ Every generated skill follows this shape:
 
 1. YAML frontmatter — spec-valid per the Agent Skills open standard:
    name (lowercase letters/digits/hyphens, ≤64 chars, matches the directory
-   name), description (≤1024 chars, what + when, imperative phrasing), optional
+   name), description (≤1024 chars, what + when; imperative phrasing is PE
+   authoring guidance), optional
    license, compatibility, metadata (incl. provenance — source URL/date when
    known), allowed-tools.
 2. Overview — what the skill does

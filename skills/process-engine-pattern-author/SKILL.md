@@ -44,7 +44,8 @@ handed to review.
    - Persona → system-prompt shape (identity, scope, standards, style, boundaries)
    - Skills → SKILL.md: spec-valid frontmatter (name ≤64 chars, lowercase
      letters/digits/hyphens, matches the directory name; description ≤1024
-     chars, what + when, imperative, user-intent phrasing; optional license,
+     chars, what + when; imperative/user-intent phrasing is PE authoring
+     guidance; optional license,
      compatibility, metadata incl. provenance — source URL/date when known)
      + Osmani anatomy body: Overview · When to Use · Core Process · Examples ·
      Common Rationalizations · Red Flags · Verification
@@ -54,9 +55,11 @@ handed to review.
    - Session templates (initial prompts)
    - Governance artifacts (Turnstone-native): a prompt policy (the package's
      operating stance, content-only, no tool_gate) and advisory judge rules
-     (the package's risk posture, on its own tool family). These are
-     Turnstone's native enforcement layer — the model authors them, Turnstone
-     applies them. See references/governance.md.
+     (the package's risk posture, on its own tool family). These are native
+     governance helpers — advisory, operator-visible, reversible — that
+     provide durable contextual guidance and review/trial evidence; they
+     never silently replace operator approval. See
+     references/governance.md.
    - Objective + desired outcomes — formed from the user's vision of "good":
      the problem being solved and why it matters (objective), and 2–4
      observable end states from the user's perspective (outcomes). If the
@@ -120,8 +123,8 @@ handed to review.
   people or regulated domains, safeguards are part of the package, sized to
   the domain.
 - "The description can be vague; the body explains it." → The description
-  carries the whole triggering burden. Imperative, user-intent, explicit
-  scope — or the skill never activates.
+  carries the whole triggering burden. Write it imperative and explicit about
+  scope (PE authoring guidance) — or the skill never activates.
 
 ## Red Flags
 - An artifact with no evidence naming, no safeguard pass (risk-relevant
