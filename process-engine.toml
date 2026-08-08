@@ -1,12 +1,12 @@
 # Process Engine — repository release metadata
-# v1.9.5 prompt-only — stripped back to the engine's original intent.
+# v1.9.6 prompt-only — stripped back to the engine's original intent.
 # Turnstone-native. All logic in prompts; Turnstone governance enforces gates.
 # GitHub is canonical; this file is lightweight release/version/count metadata
 # for the structural validator, not a product manifest or runtime contract.
 # For the prompt+code successor, see github.com/RedEyeNinja-BKK/Method-Factory.
 
-version = "1.9.5"
-engine = "process-engine 1.9.5"
+version = "1.9.6"
+engine = "process-engine 1.9.6"
 compatibility = "Turnstone 1.8.x"
 author = "RedEyeNinja-BKK"
 

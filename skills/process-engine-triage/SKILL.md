@@ -4,8 +4,8 @@ description: Feedback sensor — collect public feedback (GitHub issues/discussi
 compatibility: Turnstone 1.8.x
 metadata:
   author: RedEyeNinja-BKK
-  version: "1.9.5"
-  engine: process-engine 1.9.5
+  version: "1.9.6"
+  engine: process-engine 1.9.6
 ---
 ## Overview
 The engine improves its own process. Feedback is the sensor: issues and

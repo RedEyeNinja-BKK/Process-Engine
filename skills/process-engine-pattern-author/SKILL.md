@@ -4,8 +4,8 @@ description: Generate the project/persona/skills package for an intent — to th
 compatibility: Turnstone 1.8.x
 metadata:
   author: RedEyeNinja-BKK
-  version: "1.9.5"
-  engine: process-engine 1.9.5
+  version: "1.9.6"
+  engine: process-engine 1.9.6
 ---
 ## Overview
 Turns an operator intent into the engine's final product shape — a

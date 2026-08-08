@@ -2,6 +2,32 @@
 
 All notable changes to Process Engine are recorded here.
 
+## 1.9.6 — 2026-08-08
+
+**Prompts-only, Turnstone-native — bounded identity-preservation + repository hygiene** (engine v8.0):
+
+### Changed
+
+- **Identity-critical fact preservation:** intake now preserves material entity ↔ role ↔ identifier/alias relationships, explicitly distinct entities remain distinct, source-attributed identity conflicts remain unresolved until evidence disambiguates them, and genuine ambiguity is preserved.
+- **Pattern placement:** mutable operational/contextual identity facts default to package references/resources while stable behavior-defining identity may remain in personas.
+- **Review:** wrong-entity/ambiguity checking now produces REVISE when ambiguity could change the target.
+- **Trial:** identity-sensitive packages include contradiction/alias/near-match cases.
+- **Repository hygiene:** removed obsolete drafts→converter generated-source architecture; GitHub committed content is canonical.
+- **Structural validation:** retained small repository structural validation and made GitHub CI genuinely fail closed; structural PASS is explicitly separated from behavioral/release approval.
+
+### Validated
+
+- Canonical repository and live `process-engine-generator` runtime were reconciled and read back before product trials.
+- Two live late-invocation trials on the canonical Turnstone runtime passed across materially different domains:
+  - technical backup-appliance context;
+  - customer/order-record context.
+- Across the tested cases, Process Engine successfully reused relevant accumulated workstream context without repeated questions, preserved provenance/corrections/ambiguity, excluded irrelevant chatter, and maintained Summary Gate discipline.
+- These trials support the observed behavior in the tested scenarios; they do **not** claim a universal transcript-ingestion guarantee.
+
+### Evidence qualification
+
+The old GitHub workflow previously ran the structural validator with `|| true`, so a green check alone was not proof the validator passed; the tooling-hygiene change corrected this to fail-closed. Historical local structural PASS observations remain valid.
+
 ## 1.9.5 — 2026-08-04 (clean slate)
 
 **Prompts-only, Turnstone-native — the engine as a methodology factory** (engine v8.0):

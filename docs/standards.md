@@ -18,8 +18,10 @@ The actual operator gates are:
 Nothing ships without operator approval, and trials with evidence precede ship.
 A REVISE result returns through diagnose, rewrite, audit, and re-review.
 
-Turnstone's native prompt policy and advisory judge enforce these gates
-mechanically. The model generates packages; Turnstone owns the guardrails.
+Turnstone's native prompt policy provides durable contextual guidance and the
+advisory judge provides review/trial evidence; neither silently replaces
+operator approval. The model generates packages; the operator is the final
+gate at summary, review, trial, and ship.
 
 ## Evidence
 
@@ -30,9 +32,9 @@ to scope limits, review, trial evidence, and operator approval.
 ## Turnstone-native
 
 Process Engine is **Turnstone only**. It is built for Turnstone, deployed on
-Turnstone, and enforced by Turnstone's native governance. Nothing in the
+Turnstone, and uses Turnstone's native governance surfaces. Nothing in the
 engine — and nothing the engine generates — targets any other harness.
 Every generated package includes Turnstone governance objects — prompt
-policy and advisory judge rules — that enforce the engine's operating stance.
-The governance layer is the enforcement mechanism, not an add-on. See
-[Governance usage](governance-usage.md).
+policy and advisory judge rules — that provide persistent context and
+advisory evidence. The governance layer is a native mechanism, not an
+add-on. See [Governance usage](governance-usage.md).

@@ -4,8 +4,8 @@ description: Engine identity, pipeline, routing, and standards checklist. Load F
 compatibility: Turnstone 1.8.x
 metadata:
   author: RedEyeNinja-BKK
-  version: "1.9.5"
-  engine: process-engine 1.9.5
+  version: "1.9.6"
+  engine: process-engine 1.9.6
 ---
 ## Overview
 This is the engine's entry point. It declares what the Process Engine is (a

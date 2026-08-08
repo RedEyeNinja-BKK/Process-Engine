@@ -4,8 +4,8 @@ description: The engine's review gate — spec compliance, standards, scope, evi
 compatibility: Turnstone 1.8.x
 metadata:
   author: RedEyeNinja-BKK
-  version: "1.9.5"
-  engine: process-engine 1.9.5
+  version: "1.9.6"
+  engine: process-engine 1.9.6
 ---
 ## Overview
 Reviews a draft against the engine's standards. Produces a verdict (PASS /

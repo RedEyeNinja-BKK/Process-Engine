@@ -4,8 +4,8 @@ description: Deploy an approved, trialed package via Turnstone's native mechanis
 compatibility: Turnstone 1.8.x
 metadata:
   author: RedEyeNinja-BKK
-  version: "1.9.5"
-  engine: process-engine 1.9.5
+  version: "1.9.6"
+  engine: process-engine 1.9.6
 ---
 ## Overview
 Ships only what has PASSED review AND trial — the generated package (project /
