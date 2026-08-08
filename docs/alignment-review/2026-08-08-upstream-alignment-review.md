@@ -2,15 +2,20 @@
 
 **Status:** Read-only alignment evidence and release steering. Recorded by Turnstone (Process Engine Development Lead) with an upstream source audit delegated to Hermes and independently verified by Turnstone. No behavior, prompts, references, tooling, or Turnstone objects were changed by this review. References Issue #1.
 
-## 0. Evidence identity
+## 0. Evidence identity (final, post-merge)
 
-- PR #4 (`v1.9.6 release identity + documentation alignment`): open, not merged, mergeable.
+- **PR #4** (`v1.9.6 release identity + documentation alignment`): **MERGED** into `main`.
   - base: `16e4cbe7151297ac8c659f7fca8bad1ffd05f9dc` (main after PR #3)
   - head: `3d114e58e5e87303868fd3ed6ad073698e8988dc`
-  - branch: `v1.9.6-release-metadata`
   - commits: 2 (`c2bf841`, `3d114e5`)
-  - GitHub `structural-validation` check on head: PASS
-- **Changed-file count: 12** (not 14). The earlier "14" over-counted by adding the two docs-alignment files without deduplicating against the metadata commit (README.md and docs/architecture.md appear in both). Corrected count: `CHANGELOG.md`, `README.md`, `docs/architecture.md`, `docs/governance-usage.md`, `docs/standards.md`, `process-engine.toml`, six `skills/*/SKILL.md` = 12.
+  - merge commit: `2511f1afac7a53d013ed3fa09296adb5128f4a91`
+- **PR #6** (`v1.9.6 alignment corrections`): **MERGED** into `main` (stacked on PR #4, retargeted to `main` after PR #4).
+  - head: `bcab2205f0bf12221d84caeb0b09938bb7a9ae72` (history-sync merge of `main` into the reviewed tree; tree byte-for-byte identical to reviewed head `6705e5fc84d1ec520f6df14ff6a27e863bdd201d`)
+  - merge commit: `4808268ac8f959b2a748410cff0739ac8f0cac88`
+  - exact-head `structural-validation` on `bcab220…` run `31268609588` → **success**
+- **Final canonical `main`:** `4808268ac8f959b2a748410cff0739ac8f0cac88` (Merge PR #6: v1.9.6 alignment corrections)
+- **Changed-file count (PR #4): 12** (not 14). The earlier "14" over-counted by adding the two docs-alignment files without deduplicating against the metadata commit. Corrected count: `CHANGELOG.md`, `README.md`, `docs/architecture.md`, `docs/governance-usage.md`, `docs/standards.md`, `process-engine.toml`, six `skills/*/SKILL.md` = 12.
+- **PR #6 changed-file count vs `main`:** 19 (+170/−60).
 
 ## 1. PR #4 diff review (verified full base→head diff)
 
@@ -185,19 +190,21 @@ All candidate improvements were checked: RBAC/approvals/audit/persistence/securi
 
 **Reject / out of scope:** all E-class items.
 
-## 12. Release-candidate verdict
+## 12. Release-candidate verdict (final, post-merge)
 
 **ALIGNED WITH SMALL DOCUMENTATION/ATTRIBUTION CORRECTIONS (revised: also internal governance-contract wording correction).**
 
-PR #4 itself is correct and ready for merge review (verified full diff; structural-validation PASS on head; 12 files; non-behavioral). The behavioral boundary holds; the engine remains smaller, source-honest, prompts-only, Turnstone-native, proportionate, and proven through real use.
+PR #4 and PR #6 are **both merged into canonical `main`** (`4808268ac8f959b2a748410cff0739ac8f0cac88`). The behavioral boundary holds; the engine remains smaller, source-honest, prompts-only, Turnstone-native, proportionate, and proven through real use.
 
-After the independent senior reviews (`4888963474`, `4889011120`, `4889019914`), the correction set is **implemented in PR #6 and senior-reviewed PASS** (subject to stacked-PR CI after retargeting):
+After the independent senior reviews (`4888963474`, `4889011120`, `4889019914`, `4889264021`, `4889278302`), the correction set is **implemented in PR #6 and senior-reviewed PASS** (exact-head `structural-validation` run `31268609588` success on `bcab220…`):
 1. stale mechanical-enforcement wording in persona/core/pattern/ship (internal behavioral-contract consistency, small prompt correction — no enforcement added);
 2. imperative-description spec-vs-guidance framing;
 3. metadata string-map wording;
 4. validator claim/allowed-field mismatch (small structural fidelity);
 5. Triage package-manifest remnant (verified: no current contract; rewritten without manifest);
 6. OWASP named proportional security/risk basis integrated pre-release.
+
+**G1–G6 focused behavioral evidence** at PR #6 comment `5226619712` (Ship gate, advisory governance, governance generation, Triage traceability, spec-vs-guidance, hostile embedded instruction). **Final alignment verdict: ALIGNED — merged product matches the reviewed v1.9.6 candidate.**
 
 **Final status:** original findings (this review) → corrections (PR #6) → senior-reviewed PASS (`4889019914`). PR #4 remains the clean release-identity/documentation PR; PR #6 is the stacked alignment-fix PR; both await operator merge gates in sequence. None of these is a behavioral gap requiring new machinery.
 
