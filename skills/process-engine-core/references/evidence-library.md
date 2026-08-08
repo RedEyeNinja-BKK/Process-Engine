@@ -15,6 +15,13 @@ are generated with each package (named sources relevant to that domain).
   with this standard.
 - **Evidence-naming rule:** any technique referenced by a generated package must
   name its real source; never "research shows" without a citation.
+- **Security/risk basis (proportional):** OWASP Cheat Sheet Series
+  (github.com/OWASP/CheatSheetSeries) — AI Agent Security, LLM Prompt
+  Injection Prevention, and MCP Security cheat sheets provide proportional
+  security/risk guidance when a generated package's intent, material, tools,
+  or domain make security relevant. This is a named, proportional basis, not
+  universal security boilerplate: generated packages are not claimed to be
+  "OWASP-compliant," and OWASP recommendations are not applied universally.
 
 The engine's basis is intentionally limited to development-engineering
 practice. Domain references (medicine, finance, law, and similar) are

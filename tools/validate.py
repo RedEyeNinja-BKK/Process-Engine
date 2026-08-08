@@ -2,15 +2,22 @@
 """Process Engine structural repository validation.
 
 Validates the checked-in repository structure against its release metadata
-(process-engine.toml) and the Agent Skills spec. Fails on any of:
+(process-engine.toml) and selected Agent Skills frontmatter constraints.
+Fails on any of:
 
     - version / lineage mismatch across surfaces
     - missing / extra references, templates, skills
     - embedded core references differing from root references
-    - invalid or unsupported frontmatter
+    - invalid or unsupported frontmatter (selected Agent Skills constraints:
+      allowed fields, name, description length, compatibility length,
+      metadata string->string)
     - broken Markdown links
     - documentation component counts
     - stale version references
+
+Full Agent Skills spec validation is performed at review time via Turnstone's
+parse endpoint / upstream skills-ref; this tool checks selected repository
+invariants only.
 
 This is a repository maintenance utility used by CI and maintainers. It is
 NOT part of the Process Engine runtime — the engine is prompts only; nothing
@@ -106,8 +113,14 @@ def check_evidence_links(repo):
 
 
 def check_frontmatter(repo):
-    """Skill frontmatter: allowed fields, required fields, name rules."""
-    allowed = {"name", "description", "compatibility", "metadata", "license", "allowed-tools", "version"}
+    """Skill frontmatter: allowed fields, required fields, name rules.
+
+    Checks a selected subset of Agent Skills spec constraints (frontmatter
+    fields, name, description length, compatibility length, metadata
+    string->string). Full spec validation is performed by Turnstone's parse
+    endpoint / upstream skills-ref at review time.
+    """
+    allowed = {"name", "description", "compatibility", "metadata", "license", "allowed-tools"}
     try:
         import yaml
     except Exception:
@@ -140,6 +153,20 @@ def check_frontmatter(repo):
             fail(f"{name}: missing description")
         elif len(desc) > 1024:
             fail(f"{name}: description > 1024")
+        compat = fm.get("compatibility")
+        if compat is not None:
+            if not isinstance(compat, str):
+                fail(f"{name}: compatibility must be a string")
+            elif len(compat) > 500:
+                fail(f"{name}: compatibility > 500")
+        meta = fm.get("metadata")
+        if meta is not None:
+            if not isinstance(meta, dict):
+                fail(f"{name}: metadata must be a mapping")
+            else:
+                for mk, mv in meta.items():
+                    if not isinstance(mk, str) or not isinstance(mv, str):
+                        fail(f"{name}: metadata keys and values must be strings")
         # Required body sections
         for sec in ["## Overview", "## When to Use", "## Core Process", "## Common Rationalizations", "## Red Flags", "## Verification"]:
             if sec not in text:

@@ -27,7 +27,8 @@ Applied to EVERY generated artifact/package. Load before authoring and before re
 7. **Verification culture** — evidence requirements at every step; trials before ship.
 8. **Format compliance** — generated skills follow the Agent Skills open standard:
    name (lowercase letters/digits/hyphens, ≤64 chars, matches directory),
-   description (≤1024 chars, what + when, imperative), allowed frontmatter
+   description (≤1024 chars, what + when; imperative phrasing is PE authoring
+   guidance), allowed frontmatter
    fields only (license, compatibility, metadata, allowed-tools); package
    folders mirror the spec layout (SKILL.md, references/, optional scripts/
    and assets/). Spec-valid by construction; checked at review.

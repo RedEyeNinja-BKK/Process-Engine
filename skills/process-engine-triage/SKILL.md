@@ -39,9 +39,11 @@ categorizes feedback, proposes process revisions, and gates them through review.
    only substantive issues/discussions enter the categorize step.
 3. **Meta-improvement**: if the flaw is in the PROCESS itself, draft a revision
    to the relevant skill/reference → review → trial → ship.
-4. **Manifest link**: when a defect concerns a generated package, link it to
-   the package_id, version, deployment_id, and trial run from the package
-   manifest — traceability from feedback to shipped artifact.
+4. **Traceability link**: when a defect concerns a generated package, link it
+   to the package/project identity, version/revision, deployed-object
+   evidence, and relevant trial evidence when available — traceability from
+   feedback to the shipped artifact, using existing Turnstone/GitHub
+   evidence (no separate manifest is required).
 5. **Report** — plain-language digest to operator; recommend action; wait for
    operator call. Never auto-respond publicly without operator sign-off.
 

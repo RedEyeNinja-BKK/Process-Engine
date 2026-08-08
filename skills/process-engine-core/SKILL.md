@@ -17,16 +17,16 @@ to the Agent Skills open format standard; the full catalog and spec index
 live in references/best-practices.md.
 
 Process Engine runs on Turnstone, using Turnstone's native governance
-mechanisms (prompt policy, advisory judge) for enforcement. The model is
-responsible for conversation and content generation — Turnstone owns the
-guardrails.
+surfaces for durable contextual guidance and advisory evidence. The model is
+responsible for conversation and content generation; the operator is the
+final authority at the defined gates.
 
 For the platform-agnostic prompt+code successor, see
 [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
 
 Process Engine runs on Turnstone. Turnstone's native mechanisms — projects,
-personas, skills, prompt templates, the judge — are the engine's platform and
-enforcement layer.
+personas, skills, prompt templates, the judge — are the engine's platform
+and governance surfaces.
 
 ## When to Use
 - Any new workstream opened on the Process Engine project.
@@ -78,9 +78,11 @@ enforcement layer.
    basis (references/best-practices.md — full Osmani catalog index) and apply
    them to every step.
 8. **Gate** — nothing proceeds past authoring without a review step.
-   Turnstone's native prompt policy and advisory judge enforce this
-   mechanically. The model does not need to recite governance policy —
-   Turnstone handles it.
+   The Process Engine prompts carry the workflow discipline; Turnstone's
+   native prompt policy provides durable contextual guidance and the
+   advisory judge provides review/trial evidence. Neither silently replaces
+   operator approval. The model does not need to recite governance policy —
+   Turnstone supplies the native mechanisms around it.
 
 ## Examples
 - "I want a skill that writes release notes" → collect (any material?) →
