@@ -4,8 +4,8 @@ description: Trial harness — scripted cases and trigger sets that prove an art
 compatibility: Turnstone 1.8.x
 metadata:
   author: RedEyeNinja-BKK
-  version: "1.9.5"
-  engine: process-engine 1.9.5
+  version: "1.9.6"
+  engine: process-engine 1.9.6
 ---
 ## Overview
 Trials are the engine's proof. Every package is trialed before shipping.

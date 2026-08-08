@@ -4,7 +4,7 @@
 
 Process Engine is a persona-and-skills generator for Turnstone: tell it what you want, share what you have, and it produces a complete Turnstone package through a gated pipeline. The engine runs on prompts. Turnstone's native governance mechanisms (prompt policy, advisory judge) enforce the gates mechanically.
 
-> Process Engine v1.9.5 is the **prompts-only, Turnstone-native** reference implementation. The prompt+code successor is [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
+> Process Engine v1.9.6 is the **prompts-only, Turnstone-native** reference implementation. The prompt+code successor is [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
 
 ## What it does
 

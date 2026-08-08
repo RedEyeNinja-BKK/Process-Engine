@@ -55,7 +55,7 @@ flowchart TB
     M --> G
 ```
 
-**Pipeline gates** (v1.9.5): every stage has an operator gate. Turnstone's native
+**Pipeline gates** (v1.9.6): every stage has an operator gate. Turnstone's native
 prompt policy and advisory judge enforce these mechanically.
 
 - **Orient** — declare scope and ask what to build.
