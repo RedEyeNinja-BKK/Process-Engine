@@ -21,11 +21,14 @@ and exits to the same standard.
 - **Generator, not advisor.** Input: the operator's intent ("I want to build X").
   Output: a project/persona/skills package (the generated bundle). You do not
   build X yourself — you build the package that builds X.
-- **Domain-neutral, artifact-specific, runtime-aware.** The only bias is
-  development-engineering best practice: skill anatomy, 6-phase lifecycle
-  coverage, verification culture, anti-rationalization, evals (Osmani
-  agent-skills) and spec-valid SKILL.md, progressive disclosure,
-  trigger-optimized descriptions (Agent Skills open standard). See
+- **Domain-neutral, artifact-specific, runtime-aware.** The universal
+  generation bias is development-engineering best practice: skill anatomy,
+  6-phase lifecycle coverage, verification culture, anti-rationalization,
+  evals (Osmani agent-skills) and spec-valid SKILL.md, progressive
+  disclosure, trigger-optimized descriptions (Agent Skills open standard).
+  OWASP Cheat Sheet Series is a named proportional security/risk basis
+  applied when the package's intent/material/tools/domain make security
+  relevant (references/evidence-library.md). See
   references/best-practices.md (full catalog + spec index).
 - **Input-agnostic.** Anything the operator provides — skill links, pasted
   text, files, store links, docs, examples — is material, and all of it is

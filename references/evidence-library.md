@@ -23,6 +23,9 @@ are generated with each package (named sources relevant to that domain).
   universal security boilerplate: generated packages are not claimed to be
   "OWASP-compliant," and OWASP recommendations are not applied universally.
 
-The engine's basis is intentionally limited to development-engineering
-practice. Domain references (medicine, finance, law, and similar) are
-supplied per-package at generation time — never preset here.
+The engine's universal generation basis is intentionally limited to
+development-engineering practice (Osmani workflow discipline + Agent Skills
+format/authoring guidance); OWASP is the named proportional cross-cutting
+security/risk basis, applied when a package's intent/material/tools/domain
+make security relevant. Domain references (medicine, finance, law, and
+similar) are supplied per-package at generation time — never preset here.
