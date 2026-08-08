@@ -77,8 +77,13 @@ Review → Trial → Ship.**
   updates/boot-maintenance, apps/VMs, security/directory-services), a
   content-only prompt policy, advisory judge rules, a creation checklist,
   and a package manifest.
-- **Review:** PASS was recorded. (See Part 4 for the `risk_tier` forensic
-  finding and the missing native-parse receipt.)
+- **Review:** the **recorded verdict was PASS**. The post-trial evidence audit
+  later established that the generated SKILL.md contained non-Agent-Skills
+  frontmatter fields and that no native-parse receipt could be found, so the
+  v1.9.6 Review spec-compliance contract was **not proven satisfied** — the
+  audit verdict is that Review should have returned REVISE on the non-spec
+  frontmatter. (See Part 4 for the `risk_tier` forensic finding and the
+  missing native-parse receipt.)
 - **Trial / Ship:** see Parts 2–4.
 
 **Generation verdict: PASS WITH FINDINGS** — appropriate package for the
@@ -118,7 +123,10 @@ shouldn't-trigger / parent→child routing. No independent trigger-set or
 near-miss routing run is recorded for this package. The v1.9.6 Trial
 contract requires trigger sets for activation-dependent packages; this
 trial did not execute them, so the behavioral 10/10 must not be inflated
-into full trial proof.
+into full trial proof. Distinguish: **behavioral task suite = 10/10 PASS**;
+**recorded overall Trial verdict = PASS**; **post-trial audit verdict against
+the v1.9.6 Trial contract = INCOMPLETE** (activation/routing category
+unrun), so a fully evidenced Trial PASS was not proven at Ship time.
 
 ---
 
@@ -225,11 +233,13 @@ metadata.
 proven whether `POST /v1/api/admin/skills/parse` was run, whether it
 accepted/normalized/rejected the extra fields, or whether its result was
 part of Review evidence. v1.9.6 Review requires "allowed frontmatter fields
-only" and a spec-compliance check via the native parse endpoint; Review
-recorded PASS. This is a **confirmed Review/spec-compliance enforcement
-gap** (the contract exists but was not enforced) plus an authoring-convention
-drift (Turnstone deployment metadata carried in SKILL.md frontmatter rather
-than mapped to API fields). A small clarification is warranted: generated
+only" and a spec-compliance check via the native parse endpoint; the
+**recorded Review verdict was PASS**, but the **post-trial audit verdict is
+that Review should have returned REVISE** on the non-spec frontmatter — a
+confirmed Review/spec-compliance enforcement gap (the contract exists but
+was not enforced) plus an authoring-convention drift (Turnstone deployment
+metadata carried in SKILL.md frontmatter rather than mapped to API fields).
+A small clarification is warranted: generated
 SKILL.md frontmatter should contain only Agent Skills allowed fields, with
 Turnstone metadata mapped via API fields.
 
@@ -252,10 +262,17 @@ a **local package evidence / deployment receipt**: it records intent,
 inputs, provenance, trial evidence, and ship metadata. It is **not** a
 Process Engine lifecycle authority, not a required runtime object, and not
 a reintroduced manifest contract (v1.9.6 removed manifest mechanics as a
-PE dependency). The authoritative Ship proof remains: Review PASS, Trial
-PASS, explicit operator GO, actual deployed objects, and read-back — all of
-which exist for this package. Using the manifest's `shipped` field as part
-of the record is fine; it must not become lifecycle authority.
+PE dependency). The authoritative Ship proof is: explicit operator Ship GO,
+actual deployed objects, and read-back — all of which exist for this
+package. The **recorded** Review verdict was PASS and the **recorded**
+overall Trial verdict was PASS, but the post-trial audit established that
+the Review spec-compliance contract was not proven satisfied (non-spec
+frontmatter; no native-parse receipt) and the Trial contract was
+INCOMPLETE (activation/routing unrun). The package behaved well and shipped
+with operator GO and successful read-back; the audit corrects the
+over-crediting of the PE gate evidence without undoing Ship. Using the
+manifest's `shipped` field as part of the record is fine; it must not
+become lifecycle authority.
 
 ### Identity placement
 
