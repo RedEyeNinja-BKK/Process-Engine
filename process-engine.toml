@@ -1,6 +1,6 @@
 # Process Engine — repository release metadata
 # v1.9.6 prompt-only — stripped back to the engine's original intent.
-# Turnstone-native. All logic in prompts; Turnstone governance enforces gates.
+# Turnstone-native. All logic in prompts; Turnstone provides native governance surfaces.
 # GitHub is canonical; this file is lightweight release/version/count metadata
 # for the structural validator, not a product manifest or runtime contract.
 # For the prompt+code successor, see github.com/RedEyeNinja-BKK/Method-Factory.
@@ -20,5 +20,6 @@ template_count = 6
 
 # Historical note: v1.9.1 era evaluator suite (34 cases, release sealing,
 # mirrored dual-source, qualification_status) was retired at the v1.9.5 split.
-# The prompt-only engine relies on Turnstone's native governance for enforcement.
+# The prompt-only engine relies on Turnstone's native governance mechanisms;
+# operator approval remains authoritative.
 # Evaluator evidence is preserved at github.com/RedEyeNinja-BKK/Method-Factory.
