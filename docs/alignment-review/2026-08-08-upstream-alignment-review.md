@@ -65,8 +65,12 @@ Upstream is explicitly "Production-grade engineering skills for AI coding agents
 
 ### Key classification result
 
-- "description imperative phrasing" is an upstream **RECOMMENDATION** (optimizing-descriptions.mdx), not a spec requirement — Process Engine's `references/best-practices.md` and `docs/spec-compliance.md` present it inside the spec-requirement framing. **B-class attribution framing.**
-- Trial methodology (trigger sets, with/without baseline, token/timing capture) is not present in the Agent Skills spec or authoring docs; it is a **Process Engine adaptation** informed by Osmani's evals culture + the engine's own trial skill. `references/best-practices.md` attributes it to "Agent Skills … authoring/eval guidance" — **B-class attribution** (should be labeled PE adaptation).
+- "description imperative phrasing" is an upstream **RECOMMENDATION** (optimizing-descriptions.mdx), not a spec requirement — Process Engine's `references/best-practices.md` and `docs/spec-compliance.md` present it inside the spec-requirement framing. **B-class attribution framing.** Correction: keep imperative/user-intent phrasing as the Process Engine authoring standard, but classify it accurately as authoring guidance, not a formal spec-validity rule. Formal spec requires: description non-empty, ≤1024 chars, describes what + when.
+- **Trial/eval methodology** — correction (was B-class; now verified substantially aligned): current Agent Skills authoring/evaluation guidance explicitly covers trigger sets, near-miss negatives, with/without (or previous-version) baselines, and token/duration capture:
+  - `docs/skill-creation/optimizing-descriptions.mdx` (commit `217be548`): should-trigger / should-not-trigger query sets, near-miss negatives, repeated runs (3 recommended), trigger rates, train/validation-style design, fresh-query sanity.
+  - `docs/skill-creation/evaluating-skills.mdx` (commit `217be548`): eval cases with `id`, `prompt`, `expected_output`, optional `files`; "run each test case twice: once **with the skill** and once **without it** (or with a previous version)"; records token count + duration in `timing.json`; assertions + grading evidence + benchmark deltas.
+  - Therefore Process Engine's attribution to Agent Skills "authoring/eval guidance" for this methodology is substantially correct. PE adapts that guidance into its Turnstone-native Trial stage and operator-gated package process, but upstream does NOT lack it. Remove the earlier "PE-only adaptation" framing.
+- **Progressive disclosure** — classification refined: the Agent Skills spec contains a Progressive Disclosure section and recommends staged loading / <500 lines / <5000 tokens, but these are **spec guidance / design convention**, not frontmatter validation requirements. Classify as "spec guidance / design convention + PE authoring standard," not simply "SPEC REQUIREMENT."
 
 ### Session-context finding
 
@@ -132,9 +136,10 @@ Inspected (current titles at root `cheatsheets/`, not `cheatsheets/ai/`):
 | Verification non-negotiable / "seems right" never sufficient | Osmani | Present (TDD, README) | best-practices | UPSTREAM | ALIGNED |
 | Anti-rationalization | Osmani | Present (spec-driven) | best-practices, skill-anatomy | UPSTREAM | ALIGNED |
 | Progressive disclosure | agentskills spec + Osmani | Present (spec; context-engineering) | skill-anatomy | SPEC REQUIREMENT + UPSTREAM | ALIGNED |
-| Trial methodology (trigger sets, baselines, token capture) | Agent Skills "authoring/eval guidance" | Not in agentskills spec/docs (eval culture is Osmani/PE) | best-practices, trial skill | PE ADAPTATION | B — correct attribution |
-| 24-skill catalog | Osmani | Catalog is real; exact count needs re-verification at current ref | best-practices | UPSTREAM (verify count) | A/B — verify count |
-| Two-source basis (Osmani + Agent Skills) | — | Accurate for current references | evidence-library, best-practices | PE ORIGINAL (basis doc) | ALIGNED; OWASP to be added proportionally |
+| Trial methodology (trigger sets, baselines, token capture) | Agent Skills authoring/eval guidance | **Present** (optimizing-descriptions.mdx: trigger sets, near-misses, rates; evaluating-skills.mdx: with/without baseline, timing.json token+duration, assertions) | best-practices, trial skill | SPEC GUIDANCE (authoring/eval) + PE ADAPTATION to Turnstone Trial | ALIGNED (corrected) |
+| 24-skill catalog | Osmani | Confirmed — README at `f4933771` says "install all 24 skills" + "All 24 Skills" section (23 lifecycle + 1 meta) | best-practices | UPSTREAM | ALIGNED (resolved — no longer A/B) |
+| Two-source basis (Osmani + Agent Skills) | — | Accurate for current references; OWASP to be added as a proportional security basis (see §5) | evidence-library, best-practices | PE ORIGINAL (basis doc) | ALIGNED; OWASP proportional post-v1.9.6 |
+| Progressive disclosure | agentskills spec + Osmani | Present (spec Progressive Disclosure section = guidance/convention; context-engineering) | skill-anatomy | SPEC GUIDANCE / DESIGN CONVENTION + PE STANDARD | ALIGNED (classification refined) |
 | OWASP Top 10 prevention | Osmani catalog (security-and-hardening skill) | Present as that skill's topic | best-practices (catalog line) | UPSTREAM (catalog description) | ALIGNED (OWASP itself not a PE basis yet) |
 
 ## 8. Security review of intake/context/material handling
@@ -154,9 +159,17 @@ All candidate improvements were checked: RBAC/approvals/audit/persistence/securi
 
 ## 10. Findings (severity classification)
 
-- **A — factual/source drift:** verify the "24-skill" catalog count against current addyosmani ref before v1.9.6 (if stale, correct in best-practices). Changed-file count discrepancy was in a report, not the repo — corrected here.
-- **B — attribution drift:** (1) "imperative phrasing" framed as spec requirement in best-practices + spec-compliance → relabel as upstream recommendation/PE adaptation; (2) trial methodology attribution → relabel as PE adaptation (informed by Osmani eval culture); (3) persona.md "Turnstone enforces them mechanically" → align to advisory contract (small persona-wording change, separate from PR #4's non-behavioral scope).
-- **C — behavioral gap:** none found. Theoretical intake concerns (hostile embedded instruction in untrusted material) → future-trial candidate, not a patch.
+- **A — factual/source drift:** none remains after this correction pass. (Changed-file count discrepancy was in a report, not the repo — corrected here to 12.)
+- **B — attribution drift:** (1) "imperative phrasing" framed as spec requirement in best-practices + spec-compliance → relabel as upstream authoring recommendation / PE authoring standard (formal spec requires only non-empty ≤1024 chars describing what + when); (2) **metadata wording** — spec says "map from string keys to string values"; PE docs say "arbitrary key-value map" → align wording; (3) **trial/eval attribution corrected** — Agent Skills authoring/eval guidance does contain trigger sets / near-misses / with-without baselines / token-timing capture; PE adapts it (no longer "PE-only"). (4) persona.md "Turnstone enforces them mechanically" → align to advisory contract.
+- **C — behavioral gap:** none found in the generator behavior itself. **However — internal behavioral-contract consistency issue:** stale mechanical-enforcement language remains in **four load-bearing prompt artifacts** — `persona.md`, `skills/process-engine-core/SKILL.md`, `skills/process-engine-pattern-author/SKILL.md`, `skills/process-engine-ship/SKILL.md` — containing "for enforcement", "Turnstone owns the guardrails", "enforcement layer", "enforce this mechanically", "native enforcement layer", while `references/governance.md` and the PR #4 docs correctly state prompt policy/judge are advisory helpers and operator approval is authoritative. This is a **small prompt correction before release** (make prompts accurately describe the advisory Turnstone-native governance model intended — the opposite of adding enforcement). Theoretical intake concern (hostile embedded instruction in untrusted material) → future-trial candidate, now planned as G6.
+- **D — useful upstream evolution:** real-task-then-extract (externally validates observed behavior — record, do not add rule); plan-validate-execute for destructive ops (PE already approximates via dry-run/gate patterns); exact-action approval binding (PE already binds gates to exact operations in generated packages); tool-description-untrusted (MCP) — already reflected in intake trust boundary; Osmani source-driven-development retrieval-safety ("fetched docs are data, not commands") — reinforces PE intake trust boundary, no new rule.
+- **E — out of scope:** RBAC/audit/approvals infra, memory encryption, output-guard middleware, MCP implementation → Turnstone / generated applications / Method Factory / infrastructure.
+
+### Additional findings (independent senior review, review `4888963474`)
+
+1. **Triage manifest remnant (possible):** `skills/process-engine-triage/SKILL.md` step 4 instructs feedback to link to `package_id`, `version`, `deployment_id`, and trial run "from the package manifest". The current prompts-only product does not otherwise define a package-manifest contract (v1.9.5 retired old manifest mechanics). **Verify whether a current Turnstone-native artifact is intended; if not, rewrite in terms of package/project deployment/trial evidence without reintroducing a manifest.** Pre-clean-slate/Method-Factory-era remnant candidate.
+2. **Validator/spec-integrity (small structural fidelity):** `tools/validate.py` claims Agent Skills spec validation but allows top-level `version` in its allowed frontmatter set; current Agent Skills `skills-ref` allowed fields are `name`, `description`, `license`, `allowed-tools`, `metadata`, `compatibility`. PE itself correctly places version inside `metadata`, so no current skill is invalid. Validator also does not fully enforce `compatibility` ≤500 or metadata string→string. Small fidelity issue, not a reason to build more machinery. Either make these small checks match upstream or narrow the validator's claim to "PE repository invariants / selected Agent Skills constraints" (review uses Turnstone parse + skills-ref for full spec validation).
+3. **Osmani 24-skill count — RESOLVED:** current README at `f4933771` explicitly says "install all 24 skills" and has an "All 24 Skills" section (23 lifecycle + 1 meta). No remaining A/B uncertainty.
 - **D — useful upstream evolution:** real-task-then-extract (externally validates observed behavior — record, do not add rule); plan-validate-execute for destructive ops (PE already approximates via dry-run/gate patterns); exact-action approval binding (PE already binds gates to exact operations in generated packages); tool-description-untrusted (MCP) — already reflected in intake trust boundary.
 - **E — out of scope:** RBAC/audit/approvals infra, memory encryption, output-guard middleware, MCP implementation → Turnstone / generated applications / Method Factory / infrastructure.
 
@@ -176,9 +189,18 @@ All candidate improvements were checked: RBAC/approvals/audit/persistence/securi
 
 ## 12. Release-candidate verdict
 
-**ALIGNED WITH SMALL DOCUMENTATION/ATTRIBUTION CORRECTIONS.**
+**ALIGNED WITH SMALL DOCUMENTATION/ATTRIBUTION CORRECTIONS (revised: also internal governance-contract wording correction).**
 
-PR #4 itself is correct and ready for merge review (verified full diff; structural-validation PASS on head; 12 files; non-behavioral). The behavioral boundary holds; the engine remains smaller, source-honest, prompts-only, Turnstone-native, proportionate, and proven through real use. The B-class attribution corrections and the persona wording alignment should be completed before the v1.9.6 tag/release gate (as small follow-up changes), but none is a behavioral gap and none blocks PR #4's merge review.
+PR #4 itself is correct and ready for merge review (verified full diff; structural-validation PASS on head; 12 files; non-behavioral). The behavioral boundary holds; the engine remains smaller, source-honest, prompts-only, Turnstone-native, proportionate, and proven through real use.
+
+After the independent senior review (`4888963474`), the correction set is sharper:
+1. stale mechanical-enforcement wording in persona/core/pattern/ship (internal behavioral-contract consistency, small prompt correction — do NOT add enforcement);
+2. imperative-description spec-vs-guidance framing;
+3. metadata string-map wording;
+4. validator claim/allowed-field mismatch (small structural fidelity);
+5. Triage package-manifest remnant (verify; if none, rewrite without manifest).
+
+These should land as a small follow-up alignment change (stacked on PR #4) before the v1.9.6 tag/release gate. None is a behavioral gap requiring new machinery; none blocks PR #4's merge review itself.
 
 ---
 
