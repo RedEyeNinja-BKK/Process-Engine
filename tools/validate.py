@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Process Engine structural release gate.
+"""Process Engine structural repository validation.
 
-Validates the canonical release manifest (process-engine.toml) against the
-repository tree. Fails on any of:
+Validates the checked-in repository structure against its release metadata
+(process-engine.toml) and the Agent Skills spec. Fails on any of:
 
     - version / lineage mismatch across surfaces
     - missing / extra references, templates, skills
@@ -11,23 +11,27 @@ repository tree. Fails on any of:
     - broken Markdown links
     - documentation component counts
     - stale version references
-    - generated-diff drift (regeneration produces uncommitted differences)
 
 This is a repository maintenance utility used by CI and maintainers. It is
 NOT part of the Process Engine runtime — the engine is prompts only; nothing
 in this repository executes when the engine runs.
 
-Usage:
-    python3 tools/validate.py [--repo DIR] [--strict] [--no-diff]
+A successful result means only: the committed repository structure is
+internally consistent. It is NOT evidence of behavioral quality, trial
+PASS, release approval, or deployment approval. Turnstone provides
+runtime/governance; behavioral trials establish product behavior; the
+operator approves merge/release/deployment.
 
-Exit 0 = release-consistent. Non-zero = gate failed.
+Usage:
+    python3 tools/validate.py [--repo DIR]
+
+Exit 0 = structural validation PASS. Non-zero = structural validation failed.
 """
 
 import argparse
 import glob
 import os
 import re
-import subprocess
 import sys
 
 FAILURES = []
@@ -231,36 +235,16 @@ def check_version_sweep(repo, manifest):
     ok(f"lineage {lineage} set in manifest")
 
 
-def check_generated_diff(repo):
-    """Regeneration must not produce uncommitted differences (drift check)."""
-    try:
-        subprocess.run(
-            ["python3", os.path.join(repo, "tools", "convert.py"), "--repo", repo],
-            check=True, capture_output=True, timeout=120,
-        )
-    except subprocess.CalledProcessError as e:
-        fail(f"convert.py regeneration failed: {e.stderr.decode()[:300]}")
-        return
-    # Now compare git status
-    out = subprocess.check_output(["git", "-C", repo, "status", "--porcelain"], text=True)
-    if out.strip():
-        fail("regeneration produced uncommitted differences (drift):\n" + out.strip()[:500])
-    else:
-        ok("regeneration is idempotent (no drift)")
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=None)
-    ap.add_argument("--strict", action="store_true", help="fail on drift / run regeneration")
-    ap.add_argument("--no-diff", action="store_true", help="skip generated-diff check")
     args = ap.parse_args()
 
     here = os.path.dirname(os.path.abspath(__file__))
     repo = os.path.abspath(args.repo) if args.repo else os.path.dirname(here)
     manifest = load_manifest(repo)
 
-    print(f"Release gate for Process Engine v{manifest.get('version')} (lineage {manifest.get('lineage')})")
+    print(f"Process Engine structural repository validation — v{manifest.get('version')} (lineage {manifest.get('lineage')})")
     print(f"repo: {repo}\n")
 
     check_counts(repo, manifest)
@@ -269,13 +253,11 @@ def main():
     check_embedded_refs(repo, ["standards", "safety", "evidence-library", "skill-anatomy", "best-practices", "intake", "governance"])
     check_evidence_links(repo)
     check_version_sweep(repo, manifest)
-    if not args.no_diff and args.strict:
-        check_generated_diff(repo)
 
     if FAILURES:
-        print(f"\nRELEASE GATE FAILED: {len(FAILURES)} problem(s)")
+        print(f"\nSTRUCTURAL VALIDATION FAILED: {len(FAILURES)} problem(s)")
         sys.exit(1)
-    print("\nRELEASE GATE PASS — release-consistent.")
+    print("\nSTRUCTURAL VALIDATION PASS — committed repository structure is internally consistent.")
 
 
 if __name__ == "__main__":

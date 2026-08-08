@@ -81,12 +81,15 @@ prompt policy and advisory judge enforce these mechanically.
 
 ## Release integrity
 
-`process-engine.toml` is the canonical release manifest (version, lineage,
-artifact counts). `tools/validate.py` + the GitHub Actions release gate
-enforce structural integrity: version consistency, link resolution,
-frontmatter validity. The evaluator-era steps have been retired.
-Evaluator evidence is preserved at
-[Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
+`process-engine.toml` is repository release metadata (version, lineage,
+artifact counts). `tools/validate.py` + the GitHub Actions structural
+validation check enforce committed-repository consistency: version
+consistency, link resolution, frontmatter validity, embedded-reference
+equality. A green structural check is not behavioral proof or a release
+gate — behavioral trials establish product behavior, Turnstone provides
+runtime/governance, and the operator approves merge/release/deployment.
+The evaluator-era steps have been retired. Evaluator evidence is preserved
+at [Method Factory](https://github.com/RedEyeNinja-BKK/Method-Factory).
 
 ## Native mechanisms used
 

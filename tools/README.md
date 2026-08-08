@@ -7,10 +7,10 @@ governance (prompt policy, advisory judge) is the enforcement layer.
 
 | Tool | Purpose |
 |---|---|
-| `validate.py` | Structural release gate (CI + local): manifest version/lineage, skill/reference/template counts, frontmatter validity, link resolution, stale-version sweep, regeneration drift. |
-| `convert.py` | Content sync: regenerates `skills/`, `references/`, `templates/`, `persona.md` from the authoring drafts directory (the same source deployed to the Turnstone store). |
+| `validate.py` | Structural repository validation (CI + local): release/version metadata consistency, skill/reference/template counts, frontmatter validity, root ↔ embedded-reference equality, local Markdown link resolution, stale-version sweep. |
 
-Both tools read `process-engine.toml` as the canonical release manifest and
-are wired into `.github/workflows/release-gate.yml`. They are intentionally
-small and structural — Process Engine generates packages; it does not ship
-code.
+`validate.py` reads `process-engine.toml` as repository release metadata and
+is wired into `.github/workflows/release-gate.yml` (display name
+`structural-validation`). A successful run means only that the committed
+repository structure is internally consistent — it is NOT behavioral proof,
+trial PASS, or release/deployment approval.

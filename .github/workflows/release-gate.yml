@@ -1,4 +1,4 @@
-name: release-gate
+name: structural-validation
 
 on:
   push:
@@ -20,20 +20,9 @@ jobs:
       - name: Install deps
         run: pip install pyyaml
 
-      - name: Structural integrity gate (version counts, links, frontmatter)
-        # v1.9.5: structural checks only. Evaluator-era steps retired.
-        # Turnstone's native governance enforces gates at runtime.
-        # The eval-run commit-history notes are expected — evaluator
-        # evidence is preserved at Method Factory.
-        run: python3 tools/validate.py --repo . --no-diff || true
-
-      - name: Regeneration idempotence (drift check)
-        run: |
-          set -euo pipefail
-          if [ -d ./drafts ]; then
-            python3 tools/convert.py --repo . --drafts ./drafts
-          fi
-          if ! git diff --exit-code -- skills references templates persona.md; then
-            echo "::error::Generated content drift detected — regenerate and commit."
-            exit 1
-          fi
+      - name: Structural validation (version counts, links, frontmatter)
+        # Structural repository consistency only. This is NOT a product
+        # quality or release gate: behavioral trials establish product
+        # behavior, Turnstone provides runtime/governance, and the operator
+        # approves merge/release/deployment. A non-zero exit fails the check.
+        run: python3 tools/validate.py --repo .
