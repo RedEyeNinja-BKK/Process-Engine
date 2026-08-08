@@ -95,7 +95,7 @@ Inspected (current titles at root `cheatsheets/`, not `cheatsheets/ai/`):
 
 ### OWASP role recommendation
 
-**Option #2 — named proportional security basis.** OWASP should be a named security basis used proportionally when a package's intent/material/tools make security relevant — not a universal third generation-basis source applied to every package, and not a "third source" in evidence-library/best-practices by default. PE should have security awareness without turning every package into a security framework. Concretely: (post-v1.9.6, small) add OWASP as a named proportional basis in `references/evidence-library.md` and `references/safety.md` (one line each), keep the persona/core unchanged.
+**Option #2 — named proportional security basis.** OWASP should be a named security basis used proportionally when a package's intent/material/tools make security relevant — not a universal third generation-basis source applied to every package. PE should have security awareness without turning every package into a security framework. Concretely: add OWASP as a named proportional basis in `references/evidence-library.md` and `references/safety.md` (done in PR #6), keep the persona/core unchanged (except the small governance-wording alignment).
 
 ## 6. Core-value alignment matrix
 
@@ -136,7 +136,7 @@ Inspected (current titles at root `cheatsheets/`, not `cheatsheets/ai/`):
 | Verification non-negotiable / "seems right" never sufficient | Osmani | Present (TDD, README) | best-practices | UPSTREAM | ALIGNED |
 | Anti-rationalization | Osmani | Present (spec-driven) | best-practices, skill-anatomy | UPSTREAM | ALIGNED |
 | Progressive disclosure | agentskills spec + Osmani | Present (spec; context-engineering) | skill-anatomy | SPEC REQUIREMENT + UPSTREAM | ALIGNED |
-| Trial methodology (trigger sets, baselines, token capture) | Agent Skills authoring/eval guidance | **Present** (optimizing-descriptions.mdx: trigger sets, near-misses, rates; evaluating-skills.mdx: with/without baseline, timing.json token+duration, assertions) | best-practices, trial skill | SPEC GUIDANCE (authoring/eval) + PE ADAPTATION to Turnstone Trial | ALIGNED (corrected) |
+| Trial methodology (trigger sets, baselines, token capture) | Agent Skills authoring/eval guidance | **Present** (optimizing-descriptions.mdx: trigger sets, near-misses, rates; evaluating-skills.mdx: with/without baseline, timing.json token+duration, assertions) | best-practices, trial skill | SPEC GUIDANCE (authoring/eval) + PE ADAPTATION to Turnstone Trial | ALIGNED (corrected; no longer B-class) |
 | 24-skill catalog | Osmani | Confirmed — README at `f4933771` says "install all 24 skills" + "All 24 Skills" section (23 lifecycle + 1 meta) | best-practices | UPSTREAM | ALIGNED (resolved — no longer A/B) |
 | Two-source basis (Osmani + Agent Skills) | — | Accurate for current references; OWASP to be added as a proportional security basis (see §5) | evidence-library, best-practices | PE ORIGINAL (basis doc) | ALIGNED; OWASP proportional post-v1.9.6 |
 | Progressive disclosure | agentskills spec + Osmani | Present (spec Progressive Disclosure section = guidance/convention; context-engineering) | skill-anatomy | SPEC GUIDANCE / DESIGN CONVENTION + PE STANDARD | ALIGNED (classification refined) |
@@ -175,15 +175,13 @@ All candidate improvements were checked: RBAC/approvals/audit/persistence/securi
 
 ## 11. Smallest proposed corrections
 
-**Before v1.9.6 (small, release-facing, non-behavioral or minimal):**
-1. Relabel "imperative phrasing" as upstream recommendation (best-practices.md + spec-compliance.md) — documentation.
-2. Relabel trial-methodology attribution as Process Engine adaptation informed by Osmani (best-practices.md) — documentation.
-3. Verify/correct the "24-skill" catalog count (best-practices.md) — documentation.
-4. Align persona.md "Turnstone enforces them mechanically" wording to the advisory contract — **small persona-prompt wording change**; do as a separate reviewable change (not inside PR #4).
-
-**Post-v1.9.6 (future trial / small):**
-5. Add OWASP as a named **proportional** security basis (one line each in evidence-library.md + safety.md), not a universal third source.
-6. Future-trial candidate: hostile-instruction-in-untrusted-material intake case (to confirm the existing trust boundary holds behaviorally).
+**Resolved before v1.9.6 (by PR #6 — stacked on PR #4, reviewed):**
+1. Relabel "imperative phrasing" as PE authoring guidance (best-practices.md + spec-compliance.md) — **done in PR #6**.
+2. Trial-methodology attribution — **corrected**: Agent Skills authoring/eval guidance is the primary source (trigger sets, near-misses, with/without baselines, token-timing), with Process Engine adapting it to Turnstone. Not PE/Osmani-only. **Done in PR #6.**
+3. Osmani 24-skill count — **resolved** (README at `f4933771` confirms 24). No verification needed. **Done in PR #6.**
+4. Align persona.md "Turnstone enforces them mechanically" wording to the advisory contract — **done in PR #6** (small persona-prompt wording change, reviewed as part of the alignment-fix PR, not inside PR #4).
+5. Add OWASP as a named **proportional** security/risk basis (evidence-library.md + safety.md), not a universal third source — **done in PR #6 (pre-release integration, per the approved alignment correction)**.
+6. Future-trial candidate: hostile-instruction-in-untrusted-material intake case — **done as G6 in PR #6 behavioral regressions** (trust boundary held: material treated as data, embedded instruction ignored as authority).
 
 **Reject / out of scope:** all E-class items.
 
