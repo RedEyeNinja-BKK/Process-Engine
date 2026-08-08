@@ -2,8 +2,10 @@
 
 These are **maintenance tools used by CI and maintainers only**. They are not
 part of the Process Engine runtime — the engine itself is **prompts only**.
-Nothing in this directory executes when the engine runs; Turnstone's native
-governance (prompt policy, advisory judge) is the enforcement layer.
+Nothing in this directory executes when the engine runs; Turnstone provides
+the native governance surfaces (prompt policy as durable contextual guidance,
+advisory judge as evidence/recommendation; operator approval remains
+authoritative).
 
 | Tool | Purpose |
 |---|---|
