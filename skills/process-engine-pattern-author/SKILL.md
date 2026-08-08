@@ -67,6 +67,26 @@ handed to review.
    links, text blocks, files, store links, docs — per references/intake.md);
    combine into a best-of-all-worlds design; author ORIGINAL instructions —
    never copy input content verbatim.
+
+   **Preserve identity-critical facts.** When the intent or collected
+   material contains identity-critical relationships — an entity paired with
+   its roles and its identifiers/endpoints/interfaces/aliases (machines,
+   accounts, people, products, records, services) — preserve them in the
+   package wherever they affect decisions or tool targets:
+   - Record the entity ↔ role ↔ identifier mapping explicitly; never flatten
+     distinct identifiers into one, and never infer equivalence the operator
+     did not assert.
+   - Mutable environment/topology facts (addresses, endpoints, interfaces
+     that can change) belong in a package reference/resource by default;
+     genuinely stable, behavior-defining identity (who the agent is, which
+     fixed entities it protects) may live in the persona. Do not bloat the
+     persona with mutable topology.
+   - When supplied or live sources disagree on an identity-critical fact,
+     preserve the disagreement, name the sources, and require disambiguating
+     evidence — never silently select one.
+   - If the operator asserts an equivalence (two names are the same entity),
+     record it as an operator-supplied fact; otherwise the generated package
+     must treat identity equivalence as something to prove or leave open.
 5. **Name the evidence** — every technique cites its real source; add to the
    package's evidence library (generated per-package) if new. Bake
    provenance (source URL/date) into each generated SKILL.md metadata when
@@ -107,6 +127,9 @@ handed to review.
 - A SKILL.md whose frontmatter violates the spec (name rules, description
   limits, unknown fields).
 - Draft presented as "done" instead of "draft for review".
+- A generated package that could act on, describe, or gate the WRONG entity
+  because identity-critical facts were dropped, flattened, or silently
+  resolved (e.g., two names/IDs/endpoints collapsed as if equivalent).
 
 ## Verification
 - [ ] Eligibility gate passed — shape decided (project / persona / skill(s) / not an artifact)
@@ -117,6 +140,7 @@ handed to review.
 - [ ] Package folder layout follows the spec (SKILL.md + references/ + optional scripts/assets)
 - [ ] Evidence named for every technique
 - [ ] Safeguard pass done for risk-relevant intents (per-package, sourced)
+- [ ] Identity-critical relationships preserved (entity ↔ role ↔ identifiers) where they affect decisions or tool targets; conflicts kept visible until disambiguated; no silent equivalence inference
 - [ ] Governance artifacts: prompt policy + advisory judge rules (Turnstone-native)
 - [ ] Acceptance criteria written
 - [ ] Marked DRAFT, handed to review

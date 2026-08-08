@@ -23,3 +23,9 @@ Engine additions:
 - **Governance artifacts** — every package carries a prompt policy + judge
   rules (helper, advisory, no tool_gate — references/governance.md).
 - **Progressive disclosure** — SKILL.md is the entry point; references load on demand.
+- **Identity placement** — stable, behavior-defining identity facts (who the
+  agent is, which fixed entities it protects) may live in the persona; mutable
+  environment/topology facts (addresses, endpoints, interfaces) go in
+  references/resources, not the persona. Identity-critical mappings
+  (entity ↔ role ↔ identifiers) are preserved wherever they affect decisions
+  or tool targets; conflicts between sources stay visible until disambiguated.
