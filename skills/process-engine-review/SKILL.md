@@ -56,14 +56,29 @@ the gate.
    - **PROVEN ABSENT** — collision dimension satisfied; do not manufacture a
      collision concern.
    - **PROVEN PRESENT** — require an explicit, reversible, operator-gated
-     disposition (e.g. rename before deployment; intentional coexistence;
-     create-new then operator-approved disable-old; another supported
-     reversible plan). Review checks the plan; it does NOT execute it.
+     disposition (e.g. intentional coexistence; create-new then
+     operator-approved disable-old; later operator-gated supersession;
+     another supported reversible plan that leaves the generated canonical
+     `name` unchanged). Review checks the plan; it does NOT execute it.
      Silent overwrite / accidental duplicate assumptions → REVISE.
+     **Identity binding:** confirm the recorded destination-skill evidence
+     corresponds to the **current canonical `name` in the draft being
+     reviewed**. If the evidence belongs to a different skill identity
+     (stale receipt after a rename), REVISE — old evidence cannot satisfy
+     the collision check. A mere future "rename before deployment" plan is
+     NOT sufficient: if the disposition changes identity, the rename must
+     happen in Pattern first and the new identity must receive its own
+     preflight evidence before Review can evaluate it. If the draft has
+     already been renamed and a fresh receipt exists for that exact new
+     canonical name, evaluate the new PRESENT/ABSENT/UNPROVEN result
+     normally.
    - **UNPROVEN** — for a generated Turnstone skill intended for deployment,
      REVISE with the missing destination-state evidence identified. Do not
      let UNPROVEN silently become PASS merely because Ship later has an
      operator gate.
+   Point-in-time: PROVEN PRESENT/ABSENT reflects the named authoritative
+   catalog evidence at preflight time; it is not a transactional guarantee
+   that catalog state cannot change before Ship.
    Review performs zero catalog mutation: no create, update, enable, disable,
    delete, or supersede. Ship/operator authority remains unchanged.
 3. **Safeguard review** (risk-relevant intents only): per-package safeguards
@@ -126,7 +141,7 @@ the gate.
 - [ ] Native parse evidence recorded in Review (skill identity, parse invoked, result)
 - [ ] Allowed-field comparison performed against Agent Skills contract; no unexpected/non-spec frontmatter keys present (REVISE if present, regardless of parse result)
 - [ ] Capability-path consistency checked for procedures requiring tools/capabilities (REVISE if no executable declaration)
-- [ ] Destination-skill evidence checked for generated Turnstone skills (PROVEN ABSENT ok; PROVEN PRESENT requires explicit reversible operator-gated disposition; UNPROVEN → REVISE for deployment-bound); zero catalog mutation
+- [ ] Destination-skill evidence checked for generated Turnstone skills (bound to current canonical name in reviewed draft; PROVEN ABSENT ok; PROVEN PRESENT requires explicit reversible operator-gated disposition without identity change; stale/future-rename receipt or UNPROVEN → REVISE); zero catalog mutation
 - [ ] Safeguard review completed (risk-relevant intents only)
 - [ ] Coverage check completed against the catalog
 - [ ] Verdict recorded with evidence

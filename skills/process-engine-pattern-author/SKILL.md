@@ -153,6 +153,30 @@ handed to review.
    evidence informs the draft; it does not grant mutation authority. This
    scope is generated **skills** only — do not extend to personas, projects,
    policies, templates, or every Turnstone artifact without evidence.
+
+   **Identity-bound evidence.** The recorded destination-skill evidence is
+   valid only for the **same canonical skill identity it queried**. Keep the
+   queried/proposed canonical Agent Skills `name`, returned destination
+   identity/object evidence where applicable, the PRESENT/ABSENT/UNPROVEN
+   state, and the evidence source together as one reviewable unit (no new
+   manifest or persisted schema). If a collision disposition changes the
+   generated skill's canonical `name` (e.g. `openclaw-management` →
+   `openclaw-remote-maintenance`), that is a **revision**, not merely a
+   future deployment instruction: update the draft identity, **re-run the
+   destination-skill preflight for the new canonical name**, record fresh
+   PRESENT/ABSENT/UNPROVEN evidence, and return to Review. The old receipt
+   must not carry forward as evidence for the new identity. No re-run is
+   required when the disposition leaves the generated canonical `name`
+   unchanged (intentional coexistence using the same proposed identity;
+   later operator-gated supersession of an existing skill; another
+   disposition that does not change the canonical name).
+
+   **Point-in-time semantics.** PROVEN PRESENT / PROVEN ABSENT means proven
+   by the named authoritative catalog evidence **at the time of the
+   preflight**. It is destination-state evidence for author/review, not a
+   transactional guarantee that catalog state cannot change before Ship.
+   Do not create locks, reservations, state leases, transactional catalog
+   logic, or a new Ship preflight on this evidence.
 8. **Assemble the package** — project/persona/skills/templates/governance as
    one bundle; skill folders mirror the spec layout (SKILL.md + references/ +
    optional scripts/ and assets/) when shipped as repo content.
