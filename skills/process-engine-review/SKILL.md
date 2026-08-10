@@ -104,24 +104,35 @@ the gate.
    advances to trial/ship. Log the verdict.
 
 **Native stage activation on transitions.** Naming the next stage does not
-make it active. Before any stage executes after a transition, **natively
-activate/load the canonical target Process Engine skill** through Turnstone's
-native skill mechanism and confirm it governs. Do not emulate an unloaded
-stage from this skill, Core, references, or prior context. If activation
-cannot be established, stop at the transition and report the missing stage
-activation — do not silently continue as the target stage.
+make it active. Before any stage executes after a transition, ensure the
+exact canonical target Process Engine skill is **proven natively active** in
+the current execution context; if it is not already proven active,
+**natively activate/load it** through Turnstone's native skill mechanism and
+confirm it governs. If it is already proven active, do not reload it merely
+for ceremony. "Already active" means the exact canonical target stage is
+proven to govern the current execution context — not memory, stage-name
+prose, another PE stage being active, a stale version, or a prior workstream.
+Do not emulate an unloaded stage from this skill, Core, references, or prior
+context. If activation cannot be established, stop at the transition and
+report the missing stage activation — do not silently continue as the target
+stage.
 
 ## REVISE loop (formal)
 
 1. **Diagnose** — the verdict names each specific finding (what, where, why).
-2. **Rewrite** — before Pattern performs the rewrite, **natively activate/load
-   `process-engine-pattern-author`**; only the canonical Pattern skill may
-   revise the artifact against the findings, preserving intent.
-3. **Audit** — before re-review, **natively activate/load
-   `process-engine-review`**; the re-review confirms each finding is addressed
-   and the result is materially better than before. Regression trial re-runs
-   after any change that affects its performance or scope — before that
-   regression runs, **natively activate/load `process-engine-trial`**.
+2. **Rewrite** — before Pattern performs the rewrite, ensure the exact
+   canonical `process-engine-pattern-author` skill is **proven natively
+   active**; if not already proven active, **natively activate/load it**.
+   Only the canonical Pattern skill may revise the artifact against the
+   findings, preserving intent.
+3. **Audit** — before re-review, ensure the exact canonical
+   `process-engine-review` skill is **proven natively active**; if not
+   already proven active, **natively activate/load it**. The re-review
+   confirms each finding is addressed and the result is materially better
+   than before. Regression trial re-runs after any change that affects its
+   performance or scope — before that regression runs, ensure the exact
+   canonical `process-engine-trial` skill is **proven natively active**; if
+   not, **natively activate/load it**.
 
 ## Examples
 - Generated package review: frontmatter spec-valid? acceptance criteria
