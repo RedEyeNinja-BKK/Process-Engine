@@ -32,6 +32,14 @@ categorizes feedback, proposes process revisions, and gates them through review.
    - DESIGN (experience flaw) → draft a process/artifact revision → review
    - IDEA (new capability) → log to roadmap; propose to operator
    - SAFETY (risk/scope/safety-adjacent report) → highest priority; review immediately
+   Routing names where the work belongs; it does not make the target stage
+   active. Before any routed Process Engine stage executes (pattern-author
+   fix, review, trial regression), ensure the canonical target stage skill is
+   **proven natively active**; if not already proven active, **natively
+   activate/load it** through Turnstone's native skill mechanism and confirm
+   it governs — do not emulate the stage from this skill or prior context.
+   If activation cannot be established, stop at the transition and report the
+   missing stage activation.
    Each report gets: severity (blocker / major / minor / nit), reproduction
    status (reproduced / not-reproduced / unknown), and deduplication (link to
    an existing report if it is the same defect). Stars/forks are **adoption

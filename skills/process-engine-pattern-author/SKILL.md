@@ -180,7 +180,16 @@ handed to review.
 8. **Assemble the package** — project/persona/skills/templates/governance as
    one bundle; skill folders mirror the spec layout (SKILL.md + references/ +
    optional scripts/ and assets/) when shipped as repo content.
-9. **Hand off** — mark DRAFT, hand the package to `process-engine-review`.
+9. **Hand off** — mark DRAFT and hand the package to `process-engine-review`.
+   Naming Review does not make it active: before Review executes, ensure the
+   exact canonical `process-engine-review` skill is **proven natively active**
+   in the current execution context; if it is not already proven active,
+   **natively activate/load it** through Turnstone's native skill mechanism
+   and confirm the canonical Review skill governs. If it is already proven
+   active, do not reload it merely for ceremony. Do not emulate Review from
+   this skill, Core, references, or prior context. If the native activation
+   cannot be established, stop at the handoff and report the missing stage
+   activation — do not proceed as if Review ran.
 
 ## Examples
 - "I want a skill that writes release notes" → package: project + persona
