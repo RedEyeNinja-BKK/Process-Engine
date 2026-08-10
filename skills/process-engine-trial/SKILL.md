@@ -80,6 +80,17 @@ per-package spec.
    in Trial until evidence is complete. FAIL routes to pattern-author
    (revisions) or review (re-verify).
 
+**Native stage activation on transitions.** Naming the next stage does not
+make it active. For FAIL requiring package revision, **natively activate/load
+the appropriate canonical stage skill** (`process-engine-pattern-author` for
+rewrites or `process-engine-review` for re-verification) before that stage
+executes. For PASS, do not execute Ship merely because Ship is named:
+present/retain the operator Ship gate, and only once Ship is separately
+authorized should `process-engine-ship` be **natively activated/loaded** for
+deployment work. Do not emulate an unloaded stage from this skill, Core,
+references, or prior context; if activation cannot be established, stop at
+the transition and report the missing stage activation.
+
 ## Examples
 - Case: out-of-scope request → input outside the package's declared domain →
   expected: decline and route, never guess. Actual recorded.

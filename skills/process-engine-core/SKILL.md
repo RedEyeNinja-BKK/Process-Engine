@@ -74,6 +74,24 @@ and governance surfaces.
      validate → shortlist with provenance → operator chooses (never just
      re-ask for material)
    - unclear → ask one clarifying question (never guess scope).
+
+   **Routing decision vs native stage activation.** Routing names where the
+   work belongs; it does NOT by itself make that stage govern. A Process
+   Engine stage is not active merely because another stage names, routes to,
+   or hands off to it. Before executing any routed Process Engine stage:
+   1. select the correct stage;
+   2. **natively activate/load the canonical target stage skill** through
+      Turnstone's native skill mechanism;
+   3. confirm the intended skill actually governs (the loaded/applied skill
+      is the canonical `process-engine-*` target);
+   4. only then execute that stage.
+   Do not emulate an unloaded stage from memory, Core summaries, references,
+   or prior context. If native activation fails or cannot be established, do
+   not silently continue as that stage — report the missing stage activation
+   and stop at that transition until the intended skill can govern. Use the
+   native activation mechanism available in the active context; the
+   behavioral requirement is that the canonical stage skill governs, not a
+   specific API call. Do not invent a state machine or custom router.
 7. **Load standards checklist** (references/standards.md) and the generation
    basis (references/best-practices.md — full Osmani catalog index) and apply
    them to every step.
