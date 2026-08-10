@@ -104,6 +104,19 @@ handed to review.
 7. **Acceptance criteria** — write explicit exit criteria into each artifact,
    derived from the objective: the vision of "good" becomes observable exit
    criteria.
+
+   **Executable capability path.** When generated procedures depend on tools
+   or runtime capabilities, identify the intended executable capability path
+   and keep package declarations internally consistent with it. Conceptually:
+   procedure → required capability → declared/expected runtime tool path.
+   The path must be coherent with the persona/tool declarations and **any
+   skill-level `allowed-tools` constraints when present** (Agent Skills
+   treats `allowed-tools` as optional/experimental — do not require every
+   generated skill to add it; the reasoning must also work when a skill
+   legitimately omits that field). This is package-design reasoning, not a
+   separate manifest/artifact. Do not prescribe specific tools or mechanisms
+   (shell, MCP, wrappers, reloads) — require coherence, not implementation
+   doctrine.
 8. **Assemble the package** — project/persona/skills/templates/governance as
    one bundle; skill folders mirror the spec layout (SKILL.md + references/ +
    optional scripts/ and assets/) when shipped as repo content.
@@ -148,4 +161,5 @@ handed to review.
 - [ ] Identity-critical relationships preserved (entity ↔ role ↔ identifiers) where they affect decisions or tool targets; conflicts kept visible until disambiguated; no silent equivalence inference
 - [ ] Governance artifacts: prompt policy + advisory judge rules (Turnstone-native)
 - [ ] Acceptance criteria written
+- [ ] Executable capability path identified where procedures depend on tools/capabilities; package declarations internally consistent with it (no prescribed tool/mechanism doctrine)
 - [ ] Marked DRAFT, handed to review

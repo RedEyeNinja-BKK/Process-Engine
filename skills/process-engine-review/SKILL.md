@@ -22,8 +22,33 @@ the gate.
 2. **Spec compliance check**: validate generated skills against the Agent
    Skills open standard — name lowercase-hyphen ≤64 matching the directory,
    description ≤1024 with triggering language, allowed frontmatter fields only,
-   SKILL.md present. Use the native parse endpoint (POST /v1/api/admin/skills/
-   parse) via Turnstone's native skills API.
+   SKILL.md present. Two separate evidence steps:
+
+   **A. Native parse evidence.** For each generated SKILL.md, preserve
+   evidence that the native Turnstone parse operation actually ran: skill
+   identity, native parse invoked, result/success or failure. Review cannot
+   PASS a generated SKILL.md without that recorded receipt.
+
+   **B. Allowed-field comparison.** Separately, compare the generated/authored
+   frontmatter keys against the current Agent Skills allowed-field contract
+   (`name`, `description`, `license`, `compatibility`, `metadata`,
+   `allowed-tools`). If any unexpected/non-spec key exists, REVISE — whether
+   or not the native parser accepted/parsed the document. Parse success does
+   not by itself prove that every frontmatter key is spec-valid.
+
+   Turnstone-specific deployment metadata: use a supported native Turnstone
+   object/API field when one exists; if information legitimately belongs in
+   the portable SKILL.md, use a valid Agent Skills field such as `metadata`
+   when appropriate; otherwise do not invent a SKILL.md frontmatter field and
+   do not hallucinate a Turnstone API field.
+
+   **Capability-path consistency**: do procedures that require tools or
+   runtime capabilities have an executable path consistent with the generated
+   package's persona/tool declarations (procedure → required capability →
+   declared/expected runtime tool path)? If a referenced operation has no
+   executable declaration in the package, REVISE. Review checks internal
+   package coherence here; it does not prove runtime availability — that is
+   Trial's job.
 3. **Safeguard review** (risk-relevant intents only): per-package safeguards
    present, evidence-named, sized to the domain — no preset doctrine
    (references/safety.md).
@@ -81,6 +106,9 @@ the gate.
 ## Verification
 - [ ] Standards checklist completed
 - [ ] Spec compliance checked (frontmatter, name/description rules)
+- [ ] Native parse evidence recorded in Review (skill identity, parse invoked, result)
+- [ ] Allowed-field comparison performed against Agent Skills contract; no unexpected/non-spec frontmatter keys present (REVISE if present, regardless of parse result)
+- [ ] Capability-path consistency checked for procedures requiring tools/capabilities (REVISE if no executable declaration)
 - [ ] Safeguard review completed (risk-relevant intents only)
 - [ ] Coverage check completed against the catalog
 - [ ] Verdict recorded with evidence
