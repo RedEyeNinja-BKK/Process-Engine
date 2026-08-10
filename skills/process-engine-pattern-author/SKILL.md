@@ -117,6 +117,66 @@ handed to review.
    separate manifest/artifact. Do not prescribe specific tools or mechanisms
    (shell, MCP, wrappers, reloads) — require coherence, not implementation
    doctrine.
+
+   **Destination-skill preflight (generated Turnstone skills).** Once a
+   generated skill's canonical Agent Skills `name` is selected and the
+   intended destination is Turnstone, perform a destination-state preflight
+   **when an authoritative native read-only skill-catalog capability is
+   available in the active generator context** — do not run it before the
+   proposed identity exists, and do not make it another pipeline stage.
+   Record exactly one of:
+   - **PROVEN PRESENT** — authoritative Turnstone catalog evidence shows an
+     existing destination skill whose identity materially collides with the
+     proposed generated skill. Preserve the proposed canonical name, the
+     existing skill identity/name, returned object identity where available,
+     and the evidence source.
+   - **PROVEN ABSENT** — use only when the authoritative Turnstone lookup
+     semantics genuinely support proving absence for the queried skill
+     identity. A generic search returning zero results is NOT automatically
+     PROVEN ABSENT.
+   - **UNPROVEN** — generator lacks the authoritative read surface; the
+     lookup cannot establish absence; the result is ambiguous; returned
+     identity cannot be resolved confidently; or the lookup fails. Never
+     guess.
+   Do not invent a fuzzy-matching or normalization engine: use the generated
+   Agent Skills canonical `name`, authoritative Turnstone skill identity/name
+   fields, and native matching semantics where provided. When returned
+   evidence reveals casing/display-name/identity ambiguity, preserve it — do
+   not silently collapse distinct identities without evidence about their
+   object identities. Broader semantic overlap may be surfaced as a heads-up
+   when materially useful, but is NOT a mandatory catalog-wide ritual.
+   If PROVEN PRESENT, you may propose possible dispositions for later
+   operator consideration (rename the new skill; retain/coexist
+   intentionally; later supersede the old skill; revise/update where
+   supported). You must NOT choose one automatically, and must NOT create,
+   update, enable, disable, delete, or supersede anything. Destination-state
+   evidence informs the draft; it does not grant mutation authority. This
+   scope is generated **skills** only — do not extend to personas, projects,
+   policies, templates, or every Turnstone artifact without evidence.
+
+   **Identity-bound evidence.** The recorded destination-skill evidence is
+   valid only for the **same canonical skill identity it queried**. Keep the
+   queried/proposed canonical Agent Skills `name`, returned destination
+   identity/object evidence where applicable, the PRESENT/ABSENT/UNPROVEN
+   state, and the evidence source together as one reviewable unit (no new
+   manifest or persisted schema). If a collision disposition changes the
+   generated skill's canonical `name` (e.g. `openclaw-management` →
+   `openclaw-remote-maintenance`), that is a **revision**, not merely a
+   future deployment instruction: update the draft identity, **re-run the
+   destination-skill preflight for the new canonical name**, record fresh
+   PRESENT/ABSENT/UNPROVEN evidence, and return to Review. The old receipt
+   must not carry forward as evidence for the new identity. No re-run is
+   required when the disposition leaves the generated canonical `name`
+   unchanged (intentional coexistence using the same proposed identity;
+   later operator-gated supersession of an existing skill; another
+   disposition that does not change the canonical name).
+
+   **Point-in-time semantics.** PROVEN PRESENT / PROVEN ABSENT means proven
+   by the named authoritative catalog evidence **at the time of the
+   preflight**. It is destination-state evidence for author/review, not a
+   transactional guarantee that catalog state cannot change before Ship.
+   Do not create locks, reservations, state leases, transactional catalog
+   logic, or a new Ship preflight on this evidence.
 8. **Assemble the package** — project/persona/skills/templates/governance as
    one bundle; skill folders mirror the spec layout (SKILL.md + references/ +
    optional scripts/ and assets/) when shipped as repo content.
@@ -162,4 +222,5 @@ handed to review.
 - [ ] Governance artifacts: prompt policy + advisory judge rules (Turnstone-native)
 - [ ] Acceptance criteria written
 - [ ] Executable capability path identified where procedures depend on tools/capabilities; package declarations internally consistent with it (no prescribed tool/mechanism doctrine)
+- [ ] Destination-skill preflight recorded for generated Turnstone skills when authoritative native catalog read is available (PROVEN PRESENT / PROVEN ABSENT / UNPROVEN); no mutation; no automatic disposition
 - [ ] Marked DRAFT, handed to review
