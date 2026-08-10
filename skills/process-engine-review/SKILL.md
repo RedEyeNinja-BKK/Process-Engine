@@ -49,6 +49,23 @@ the gate.
    executable declaration in the package, REVISE. Review checks internal
    package coherence here; it does not prove runtime availability — that is
    Trial's job.
+
+   **Destination-skill evidence (generated Turnstone skills)**: for each
+   generated Turnstone skill, check the recorded destination-state evidence
+   from Pattern:
+   - **PROVEN ABSENT** — collision dimension satisfied; do not manufacture a
+     collision concern.
+   - **PROVEN PRESENT** — require an explicit, reversible, operator-gated
+     disposition (e.g. rename before deployment; intentional coexistence;
+     create-new then operator-approved disable-old; another supported
+     reversible plan). Review checks the plan; it does NOT execute it.
+     Silent overwrite / accidental duplicate assumptions → REVISE.
+   - **UNPROVEN** — for a generated Turnstone skill intended for deployment,
+     REVISE with the missing destination-state evidence identified. Do not
+     let UNPROVEN silently become PASS merely because Ship later has an
+     operator gate.
+   Review performs zero catalog mutation: no create, update, enable, disable,
+   delete, or supersede. Ship/operator authority remains unchanged.
 3. **Safeguard review** (risk-relevant intents only): per-package safeguards
    present, evidence-named, sized to the domain — no preset doctrine
    (references/safety.md).
@@ -109,6 +126,7 @@ the gate.
 - [ ] Native parse evidence recorded in Review (skill identity, parse invoked, result)
 - [ ] Allowed-field comparison performed against Agent Skills contract; no unexpected/non-spec frontmatter keys present (REVISE if present, regardless of parse result)
 - [ ] Capability-path consistency checked for procedures requiring tools/capabilities (REVISE if no executable declaration)
+- [ ] Destination-skill evidence checked for generated Turnstone skills (PROVEN ABSENT ok; PROVEN PRESENT requires explicit reversible operator-gated disposition; UNPROVEN → REVISE for deployment-bound); zero catalog mutation
 - [ ] Safeguard review completed (risk-relevant intents only)
 - [ ] Coverage check completed against the catalog
 - [ ] Verdict recorded with evidence
