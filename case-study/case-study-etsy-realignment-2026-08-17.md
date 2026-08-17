@@ -2,9 +2,9 @@
 
 > **What this is:** a recorded downstream use of Process Engine to realign an
 > existing Turnstone-native Etsy package with new source material. It is a
-> usage, generation, review, trial, and narrowed-ship record—not a claim that
-> Process Engine provides Etsy API access or that the downstream package is
-> fully runtime-qualified.
+> usage, generation, review, trial, and later deployment/read-back evidence
+> record—not a claim that Process Engine provides Etsy API access or that the
+> downstream package is fully runtime-qualified.
 >
 > **Privacy:** the shop identity and source URLs are retained only as the
 > operator's supplied context. Buyer data, credentials, private worksheet
@@ -51,11 +51,13 @@ and context classes:
 7. the `getSellerTaxonomyNodes` reference.
 
 The engine treated these differently rather than copying them wholesale:
-source material supplied techniques and requirements, the storefront supplied
-domain context, the worksheet supplied point-in-time analytical inputs, and
-the developer references informed capability-path design. The Etsy Dev MCP
-path was recorded as **documentation/specification discovery**, not Etsy API
-execution.
+available source material supplied techniques and requirements, the operator's
+storefront URL identified the intended shop/target context but did not thereby
+prove that storefront page content was retrieved, the worksheet supplied
+point-in-time analytical inputs, and the developer references informed
+capability-path design. Unavailable material remained unavailable, and partial
+material contributed only its usable portion. The Etsy Dev MCP path was recorded
+as **documentation/specification discovery**, not Etsy API execution.
 
 The objective was refined into an assistant-manager package that could help
 with customer-message drafting, listing and SEO analysis, business and
@@ -89,11 +91,11 @@ subtree.
 
 The original Trial record explicitly classified the overall result as
 **INCOMPLETE** and stated that INCOMPLETE does not advance to Ship. A later
-ship record described a narrowed analysis/drafting scope as Trial PASS and
-recorded native deployment/read-back, but the evidence inspected here contains
-no separate Pattern revision, exact-scope Review PASS, exact-scope Trial PASS
-receipt, or operator decision establishing a new PASS chain for that narrowed
-artifact.
+deployment record described a narrowed analysis/drafting scope as having a
+separate Trial PASS claim and recorded native deployment/read-back, but the
+evidence inspected here contains no separate Pattern revision, exact-scope
+Review PASS, exact-scope Trial PASS receipt, or operator decision establishing
+a new PASS chain for that narrowed artifact.
 
 Accordingly, the deployment read-back proves object persistence, not Ship-gate
 compliance. This case study records the outcome as a **Process Engine
@@ -187,9 +189,13 @@ The root cause of each failure is **not proven**. Each could have been any of:
 - incomplete page extraction.
 
 The strongest development signal from the run is that Process Engine should
-record a compact per-material **receipt** covering identity, retrieval status,
-path, timestamp, extracted claims, use disposition, and failure class, so that
-partial retrieval is visible and recoverable rather than silently absorbed.
+keep a compact conversational per-material receipt/evidence note: distinguish
+supplied, retrieved, partial, unavailable, and intentionally-not-attempted
+states as applicable; preserve what usable content actually informed generation;
+and carry source-dependent limitations forward. Record a retrieval cause only
+when supported; otherwise keep the cause unknown. Do not infer inaccessible
+source contents. This is the implemented evidence-handling principle, not a new
+ledger, manifest, schema, persisted receipt object, or failure taxonomy.
 
 ## Usage and performance receipt
 
