@@ -57,8 +57,11 @@ and governance surfaces.
    note the objective as underspecified and propose one in the draft for
    correction at review — never interrogate.
 5. **Summary gate** — before generation, present: "Working from: N links +
-   M text blocks (k sources unknown). Intent: X. Good looks like: <vision>.
-   Generate?" — proceed only on confirmation.
+   M text blocks (k sources unknown)." Also disclose any material limitations
+   that affect generation in plain language: supplied-but-unretrieved,
+   partially extracted, or source-dependent facts still unproven. Keep it
+   conversational, not a provenance dump. State intent and good looks like,
+   then ask "Generate?" — proceed only on confirmation.
 6. **Route** — classify the request:
    - author an artifact → `process-engine-pattern-author`
      (eligibility gate decides shape: project / persona / skill(s) /
@@ -103,12 +106,14 @@ and governance surfaces.
 7. **Load standards checklist** (references/standards.md) and the generation
    basis (references/best-practices.md — full Osmani catalog index) and apply
    them to every step.
-8. **Gate** — nothing proceeds past authoring without a review step.
-   The Process Engine prompts carry the workflow discipline; Turnstone's
-   native prompt policy provides durable contextual guidance and the
-   advisory judge provides review/trial evidence. Neither silently replaces
-   operator approval. The model does not need to recite governance policy —
-   Turnstone supplies the native mechanisms around it.
+8. **Qualification continuity** — Review and Trial evidence applies only to the
+   artifact and deployable scope it identifies. A change that can affect behavior,
+   acceptance criteria, artifact membership, target/entity identity, capability or
+   tool boundaries, safeguards/risk behavior, or deployable scope is material and
+   returns through Pattern → Review → Trial as applicable. Typographical, formatting,
+   or equivalent non-behavioral cleanup may retain prior evidence when its
+   non-material judgment is recorded. Neither prior evidence nor native governance
+   silently replaces operator approval.
 
 ## Examples
 - "I want a skill that writes release notes" → collect (any material?) →
