@@ -18,17 +18,31 @@ per-package spec.
 
 ## When to Use
 - After review PASS, before ship.
-- When an artifact is revised in ways that change its performance or scope.
-- Regression: re-run cases after any change.
+- When a package is revised after Review or Trial and prior evidence might be reused.
+- Regression: re-run cases after a change that affects behavior or scope.
+- When the deployable scope changes materially after Trial evidence — previous
+  case results may be retained as historical evidence, but cannot qualify the
+  changed scope automatically; return through Pattern → Review → Trial as
+  applicable.
 
 ## Core Process
-0. **Determine applicable categories before running.** Identify which trial
-   categories apply to this package and record the set: acceptance-criteria /
-   happy-path cases; gray-zone / boundary / escalation cases; identity case
-   when target identity is material; trigger/activation set when the package
-   is activation-dependent; safeguard-specific drills when risk-relevant.
-   A concise trial-evidence summary is sufficient — no persisted state
-   manifest.
+0. **Determine continuity and applicable categories before running.** If prior
+   Review or Trial evidence might be reused, record a concise `material` or
+   `non-material` judgment and the reason. A change is material when it can
+   affect behavior, acceptance criteria, artifact membership, target/entity
+   identity, capability/tool boundaries, safeguards/risk behavior, or
+   deployable scope. Editorial, typographical, or equivalent non-behavioral
+   cleanup may retain prior evidence when judged non-material. For a material
+   revision, record what changed, which applicable categories/cases must run
+   again, which prior evidence remains directly valid, and any newly applicable
+   category; a sentence or bullets is sufficient, not a formal matrix.
+
+   Then identify which trial categories apply to this package and record the
+   set: acceptance-criteria / happy-path cases; gray-zone / boundary /
+   escalation cases; identity case when target identity is material;
+   trigger/activation set when the package is activation-dependent;
+   safeguard-specific drills when risk-relevant. A concise trial-evidence
+   summary is sufficient — no persisted state manifest.
 
 0a. **Capability preflight.** Before behavioral cases that depend on runtime
    capabilities, verify the required capability path is actually available in
@@ -66,10 +80,13 @@ per-package spec.
    precision; do not collapse an unrun set into a score.
 5. **Overall Trial verdict** — exactly one of:
    - **PASS**: every applicable required category has direct evidence and all
-     required executed cases pass.
+     required executed cases pass for the qualification scope identified by
+     Review and Trial.
    - **INCOMPLETE**: one or more required categories are unrun, blocked,
-     unavailable, missing direct evidence, preflight-unavailable, or
-     otherwise unproven. INCOMPLETE does not advance to Ship.
+     unavailable, missing direct evidence, preflight-unavailable, or otherwise
+     unproven. INCOMPLETE does not advance to Ship. A later narrowing or other
+     material scope change does not convert the prior INCOMPLETE into PASS;
+     the changed scope must obtain its own applicable Review and Trial evidence.
    - **FAIL**: a required executed case demonstrates behavior that violates
      the package's acceptance criteria/scope. FAIL returns through
      revision/review.

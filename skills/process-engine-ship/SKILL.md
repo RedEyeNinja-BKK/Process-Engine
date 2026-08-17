@@ -18,10 +18,15 @@ defined before ship.
 
 ## Core Process
 1. **Confirm gates** — review PASS + trial PASS + operator approval. All three
-   required before touching anything. Turnstone's prompt policy/judge may
-   provide contextual/advisory evidence, but they do not substitute for these
-   recorded prerequisites or operator authority — you must confirm them
-   yourself before deploying.
+   required before touching anything. Confirm that the recorded PASS applies to
+   the qualification scope actually being shipped, including the package/draft
+   identity, deployable artifact identities, and material exclusions or capability
+   limits. A material scope change cannot inherit prior PASS evidence. An operator
+   request to ship only a tested subset does not create a new eligible scope or
+   waive an INCOMPLETE Trial. If the operator wants that subset as a genuinely
+   different package, return it through Pattern → Review → Trial and require an
+   overall PASS for that scope before Ship. Turnstone's prompt policy/judge does
+   not substitute for these recorded prerequisites or operator authority.
 2. **Define rollback** — how to undo this deployment (delete the created
    objects / revert content) before deploying.
 3. **Deploy the package** via Turnstone's native API:

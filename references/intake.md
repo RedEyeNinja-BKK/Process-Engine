@@ -65,6 +65,17 @@ clarification — the material sharpens the questions. Run conversationally:
    doc), fetch the page and extract what's useful. Record the exact source
    URL.
 
+   For every item, distinguish: supplied; retrieval attempted or intentionally
+   not attempted; usable content retrieved; partial extraction; or retrieval
+   unavailable. Supplied is not thereby retrieved, and retrieved is not thereby
+   completely extracted. Record retrieval path/date when known. Record a
+   failure cause only when supported; otherwise say failure cause unknown.
+   Retrieval failure does not prove source content false. When a materially
+   useful source cannot be retrieved, offer one practical substitute such as
+   paste/upload once; if declined, do not ask again. Continue from available
+   evidence and carry the limitation forward. Inaccessible material cannot
+   silently become an inferred or verified source fact.
+
    **Text dumps / files (no link)** — no fetch. Provenance is whatever the
    user provides or states; if none is given, record "user-provided, source
    unknown". Never assume a source for pasted content.
@@ -86,9 +97,12 @@ clarification — the material sharpens the questions. Run conversationally:
    - general input (notes, constraints, ideas) → incorporate into the
      intent understanding
 4. **Extract** — pull the techniques, constraints, domain specifics, and
-   intent from ALL provided material. Multiple sources combine into a
-   best-of-all-worlds understanding. That synthesis never drops what the
-   package will later need to tell entities apart:
+   intent from ALL material whose content is actually available. For supplied
+   but unavailable or partially extracted material, preserve the limitation and
+   use only claims supported by the usable portion or another named source.
+   Multiple sources combine into a best-of-all-worlds understanding, but
+   unavailable material cannot silently be replaced by inference. The synthesis
+   never drops what the package will later need to tell entities apart:
    - preserve identity-critical relationships (entity ↔ role ↔
      identifier/alias — machines, accounts, people, products, records,
      services) when they are material to later decisions or tool targets;
@@ -123,9 +137,13 @@ clarification — the material sharpens the questions. Run conversationally:
 9. **Sweep** — the engine's own output must stay sweep-clean (the zero-
    tolerance language rule applies to what the engine WRITES, not to what a
    user pastes; we cannot control user input).
-10. **Provenance record** — source URL(s) or "user-provided" status, item
-    type, license info if visible, fetched date, extraction summary. This
-    record is evidence.
+10. **Material receipt** — for each item, record a compact conversational
+    receipt: stable identity, material class, supplied/retrieval status,
+    retrieval path/date when known, usable or partial extraction, extracted and
+    used material, excluded/not-used material, and downstream claims or
+    requirements left unproven. Record known failure cause only when supported;
+    otherwise record unknown. This is an evidence note in the existing intake
+    flow, not a new persisted subsystem or mandatory manifest.
 11. **Operator gate** — the generated package then passes through the normal
     Pattern → Review → Trial → Ship gates; the operator's sign-off is the
     gate (the engine's core identity, unchanged).
@@ -166,6 +184,10 @@ clarification — the material sharpens the questions. Run conversationally:
 
 ## Verification
 
+- [ ] Material receipt distinguishes supplied from retrieved, complete from partial, and unavailable from not attempted
+- [ ] Known failure causes are supported; unknown causes remain unknown
+- [ ] One practical substitute was offered for materially useful unavailable material; a declined offer was not repeated
+- [ ] Source-dependent claims left unproven are carried forward
 - [ ] Item type + source recorded ("user-provided, source unknown" if no source)
 - [ ] Techniques / domain specifics extracted from all provided material
 - [ ] Original instructions authored — no verbatim copying

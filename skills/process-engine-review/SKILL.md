@@ -18,7 +18,11 @@ the gate.
 
 ## Core Process
 1. **Standards checklist** (references/standards.md): evidence-named? scope
-   honest? acceptance criteria present?
+   honest? acceptance criteria present? Record a concise qualification scope
+   statement: package/draft identity, deployable artifact identities included,
+   and material exclusions or capability limitations. Review PASS applies only
+   to that identified scope. A material change after Review is a revision and
+   requires the appropriate Pattern → Review path before Trial or Ship.
 2. **Spec compliance check**: validate generated skills against the Agent
    Skills open standard — name lowercase-hyphen ≤64 matching the directory,
    description ≤1024 with triggering language, allowed frontmatter fields only,
@@ -120,6 +124,8 @@ stage.
 ## REVISE loop (formal)
 
 1. **Diagnose** — the verdict names each specific finding (what, where, why).
+   Record or update the qualification scope statement when the artifact or
+   deployable scope changes.
 2. **Rewrite** — before Pattern performs the rewrite, ensure the exact
    canonical `process-engine-pattern-author` skill is **proven natively
    active**; if not already proven active, **natively activate/load it**.
